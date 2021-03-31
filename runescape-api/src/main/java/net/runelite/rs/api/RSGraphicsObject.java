@@ -3,7 +3,7 @@ package net.runelite.rs.api;
 import net.runelite.api.GraphicsObject;
 import net.runelite.mapping.Import;
 
-public interface RSGraphicsObject extends GraphicsObject, RSEntity
+public interface RSGraphicsObject extends GraphicsObject, RSRenderable
 {
 	@Import("id")
 	@Override
@@ -26,4 +26,8 @@ public interface RSGraphicsObject extends GraphicsObject, RSEntity
 	@Import("height")
 	@Override
 	int getHeight();
+
+	@Import("isFinished")
+	@Override
+	boolean finished();
 }

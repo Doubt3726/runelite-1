@@ -4,44 +4,53 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hk")
+@ObfuscatedName("hf")
 @Implements("DirectByteArrayCopier")
 public class DirectByteArrayCopier extends AbstractByteArrayCopier {
-	@ObfuscatedName("m")
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "Lig;"
+	)
+	@Export("Widget_modelsArchive")
+	static AbstractArchive Widget_modelsArchive;
+	@ObfuscatedName("n")
 	@Export("directBuffer")
 	ByteBuffer directBuffer;
 
-	@ObfuscatedName("j")
+	DirectByteArrayCopier() {
+	} // L: 10
+
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)[B",
-		garbageValue = "300747627"
+		descriptor = "(I)[B",
+		garbageValue = "1361682252"
 	)
 	@Export("get")
 	byte[] get() {
-		byte[] var1 = new byte[this.directBuffer.capacity()];
-		this.directBuffer.position(0);
-		this.directBuffer.get(var1);
-		return var1;
+		byte[] var1 = new byte[this.directBuffer.capacity()]; // L: 13
+		this.directBuffer.position(0); // L: 14
+		this.directBuffer.get(var1); // L: 15
+		return var1; // L: 16
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "([BB)V",
-		garbageValue = "92"
+		descriptor = "([BI)V",
+		garbageValue = "262833794"
 	)
 	@Export("set")
-	public void set(byte[] var1) {
+	void set(byte[] var1) {
 		this.directBuffer = ByteBuffer.allocateDirect(var1.length);
-		this.directBuffer.position(0);
-		this.directBuffer.put(var1);
-	}
+		this.directBuffer.position(0); // L: 21
+		this.directBuffer.put(var1); // L: 22
+	} // L: 23
 
-	@ObfuscatedName("gl")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lcc;II)V",
-		garbageValue = "1934042219"
+		descriptor = "(Lig;I)V",
+		garbageValue = "292233920"
 	)
-	static final void method4090(Actor var0, int var1) {
-		HealthBar.worldToScreen(var0.x, var0.y, var1);
-	}
+	public static void method4147(AbstractArchive var0) {
+		StructComposition.StructDefinition_archive = var0; // L: 19
+	} // L: 20
 }

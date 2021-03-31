@@ -1,87 +1,52 @@
-import java.awt.Desktop;
-import java.awt.Desktop.Action;
-import java.net.URI;
 import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eb")
+@ObfuscatedName("ei")
 @Implements("UrlRequest")
 public class UrlRequest {
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@Export("url")
 	final URL url;
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@Export("isDone0")
 	volatile boolean isDone0;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@Export("response0")
 	volatile byte[] response0;
 
 	UrlRequest(URL var1) {
-		this.url = var1;
-	}
+		this.url = var1; // L: 96
+	} // L: 97
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1247069155"
+		descriptor = "(I)Z",
+		garbageValue = "-1827433673"
 	)
 	@Export("isDone")
 	public boolean isDone() {
-		return this.isDone0;
+		return this.isDone0; // L: 100
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)[B",
-		garbageValue = "1076365281"
+		descriptor = "(B)[B",
+		garbageValue = "124"
 	)
 	@Export("getResponse")
 	public byte[] getResponse() {
-		return this.response0;
+		return this.response0; // L: 104
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;ZLjava/lang/String;ZI)V",
-		garbageValue = "-2122321724"
+		descriptor = "(ZZI)Lly;",
+		garbageValue = "-2105187304"
 	)
-	static void method3426(String var0, boolean var1, String var2, boolean var3) {
-		if (var1) {
-			if (!var3 && Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) {
-				try {
-					Desktop.getDesktop().browse(new URI(var0));
-					return;
-				} catch (Exception var5) {
-				}
-			}
-
-			if (class60.field450.startsWith("win") && !var3) {
-				FloorUnderlayDefinition.method4608(var0, 0);
-				return;
-			}
-
-			if (class60.field450.startsWith("mac")) {
-				GrandExchangeOfferTotalQuantityComparator.method165(var0, 1, var2);
-				return;
-			}
-
-			FloorUnderlayDefinition.method4608(var0, 2);
-		} else {
-			FloorUnderlayDefinition.method4608(var0, 3);
-		}
-
-	}
-
-	@ObfuscatedName("gx")
-	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "60"
-	)
-	static final void method3432(int var0, int var1, int var2, int var3) {
-		TileItemPile.method2901();
+	static IndexedSprite method3476(boolean var0, boolean var1) {
+		return var0 ? (var1 ? WorldMapDecoration.field237 : Login.options_buttons_2Sprite) : (var1 ? UrlRequester.field1956 : class69.options_buttons_0Sprite); // L: 198
 	}
 }

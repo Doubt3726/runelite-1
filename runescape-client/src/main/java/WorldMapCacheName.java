@@ -1,84 +1,109 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("at")
+@ObfuscatedName("an")
 @Implements("WorldMapCacheName")
 public class WorldMapCacheName {
-	@ObfuscatedName("rq")
-	@ObfuscatedGetter(
-		intValue = 1378764689
-	)
-	static int field329;
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lat;"
+		descriptor = "Lan;"
 	)
-	public static final WorldMapCacheName field322;
-	@ObfuscatedName("o")
+	public static final WorldMapCacheName field333;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lat;"
+		descriptor = "Lan;"
 	)
-	public static final WorldMapCacheName field325;
-	@ObfuscatedName("q")
+	public static final WorldMapCacheName field323;
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "Lat;"
+		descriptor = "Lan;"
 	)
 	public static final WorldMapCacheName field324;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "Lat;"
+		descriptor = "Lan;"
 	)
-	static final WorldMapCacheName field323;
-	@ObfuscatedName("p")
+	static final WorldMapCacheName field325;
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "Lat;"
+		descriptor = "Lan;"
 	)
 	public static final WorldMapCacheName field326;
-	@ObfuscatedName("ga")
-	@ObfuscatedGetter(
-		intValue = 1520300025
+	@ObfuscatedName("dc")
+	@ObfuscatedSignature(
+		descriptor = "Liy;"
 	)
-	static int field328;
-	@ObfuscatedName("g")
+	@Export("archive4")
+	static Archive archive4;
+	@ObfuscatedName("h")
 	@Export("name")
 	public final String name;
 
 	static {
-		field322 = new WorldMapCacheName("details");
-		field325 = new WorldMapCacheName("compositemap");
-		field324 = new WorldMapCacheName("compositetexture");
-		field323 = new WorldMapCacheName("area");
-		field326 = new WorldMapCacheName("labels");
+		field333 = new WorldMapCacheName("details"); // L: 4
+		field323 = new WorldMapCacheName("compositemap"); // L: 5
+		field324 = new WorldMapCacheName("compositetexture"); // L: 6
+		field325 = new WorldMapCacheName("area"); // L: 7
+		field326 = new WorldMapCacheName("labels"); // L: 8
 	}
 
 	WorldMapCacheName(String var1) {
-		this.name = var1;
-	}
+		this.name = var1; // L: 12
+	} // L: 13
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(ILlp;Lig;I)V",
-		garbageValue = "-1710341553"
+		descriptor = "(II)Z",
+		garbageValue = "1996576804"
 	)
-	static void method688(int var0, ArchiveDisk var1, Archive var2) {
-		byte[] var3 = null;
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
-			for (ArchiveDiskAction var5 = (ArchiveDiskAction)ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.last(); var5 != null; var5 = (ArchiveDiskAction)ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.previous()) {
-				if (var5.key == (long)var0 && var1 == var5.archiveDisk && var5.type == 0) {
-					var3 = var5.data;
-					break;
+	@Export("loadInterface")
+	public static boolean loadInterface(int var0) {
+		if (Widget.Widget_loadedInterfaces[var0]) { // L: 212
+			return true;
+		} else if (!FontName.Widget_archive.tryLoadGroup(var0)) { // L: 213
+			return false;
+		} else {
+			int var1 = FontName.Widget_archive.getGroupFileCount(var0); // L: 214
+			if (var1 == 0) { // L: 215
+				Widget.Widget_loadedInterfaces[var0] = true; // L: 216
+				return true; // L: 217
+			} else {
+				if (DefaultsGroup.Widget_interfaceComponents[var0] == null) { // L: 219
+					DefaultsGroup.Widget_interfaceComponents[var0] = new Widget[var1];
 				}
+
+				for (int var2 = 0; var2 < var1; ++var2) { // L: 220
+					if (DefaultsGroup.Widget_interfaceComponents[var0][var2] == null) { // L: 221
+						byte[] var3 = FontName.Widget_archive.takeFile(var0, var2); // L: 222
+						if (var3 != null) { // L: 223
+							DefaultsGroup.Widget_interfaceComponents[var0][var2] = new Widget(); // L: 224
+							DefaultsGroup.Widget_interfaceComponents[var0][var2].id = var2 + (var0 << 16); // L: 225
+							if (var3[0] == -1) { // L: 226
+								DefaultsGroup.Widget_interfaceComponents[var0][var2].decode(new Buffer(var3));
+							} else {
+								DefaultsGroup.Widget_interfaceComponents[var0][var2].decodeLegacy(new Buffer(var3)); // L: 227
+							}
+						}
+					}
+				}
+
+				Widget.Widget_loadedInterfaces[var0] = true; // L: 231
+				return true; // L: 232
 			}
 		}
-
-		if (var3 != null) {
-			var2.load(var1, var0, var3, true);
-		} else {
-			byte[] var4 = var1.read(var0);
-			var2.load(var1, var0, var4, true);
-		}
 	}
+
+	@ObfuscatedName("lk")
+	@ObfuscatedSignature(
+		descriptor = "(S)V",
+		garbageValue = "-11688"
+	)
+	static void method715() {
+		if (Client.oculusOrbState == 1) { // L: 11624
+			Client.field747 = true; // L: 11625
+		}
+
+	} // L: 11627
 }

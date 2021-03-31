@@ -1,19 +1,19 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("m")
+@ObfuscatedName("n")
 public interface class0 {
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;Lkn;B)V",
-		garbageValue = "0"
+		descriptor = "(Ljava/lang/Object;Lkx;B)V",
+		garbageValue = "-41"
 	)
-	void vmethod59(Object var1, Buffer var2);
+	void vmethod48(Object var1, Buffer var2);
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkn;B)Ljava/lang/Object;",
-		garbageValue = "114"
+		descriptor = "(Lkx;I)Ljava/lang/Object;",
+		garbageValue = "1678106953"
 	)
-	Object vmethod47(Buffer var1);
+	Object vmethod45(Buffer var1);
 }

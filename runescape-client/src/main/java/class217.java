@@ -1,69 +1,44 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hn")
+@ObfuscatedName("hg")
 public class class217 {
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(Lic;IIB)[Llz;",
-		garbageValue = "-104"
+	@ObfuscatedName("c")
+	@ObfuscatedGetter(
+		intValue = 338729147
 	)
-	public static Sprite[] method4091(AbstractArchive var0, int var1, int var2) {
-		byte[] var4 = var0.takeFile(var1, var2);
-		boolean var3;
-		if (var4 == null) {
-			var3 = false;
-		} else {
-			class3.SpriteBuffer_decode(var4);
-			var3 = true;
-		}
+	@Export("clientType")
+	public static int clientType;
 
-		if (!var3) {
-			return null;
-		} else {
-			Sprite[] var5 = new Sprite[class335.SpriteBuffer_spriteCount];
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(Lig;B)V",
+		garbageValue = "0"
+	)
+	public static void method4154(AbstractArchive var0) {
+		InvDefinition.InvDefinition_archive = var0; // L: 17
+	} // L: 18
 
-			for (int var6 = 0; var6 < class335.SpriteBuffer_spriteCount; ++var6) {
-				Sprite var7 = var5[var6] = new Sprite();
-				var7.width = class335.SpriteBuffer_spriteWidth;
-				var7.height = UserComparator8.SpriteBuffer_spriteHeight;
-				var7.xOffset = class335.SpriteBuffer_xOffsets[var6];
-				var7.yOffset = NPC.SpriteBuffer_yOffsets[var6];
-				var7.subWidth = class335.SpriteBuffer_spriteWidths[var6];
-				var7.subHeight = class335.SpriteBuffer_spriteHeights[var6];
-				int var8 = var7.subHeight * var7.subWidth;
-				byte[] var9 = ItemDefinition.SpriteBuffer_pixels[var6];
-				var7.pixels = new int[var8];
-
-				for (int var10 = 0; var10 < var8; ++var10) {
-					var7.pixels[var10] = class335.SpriteBuffer_spritePalette[var9[var10] & 255];
-				}
-			}
-
-			GrandExchangeEvent.method158();
-			return var5;
-		}
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/CharSequence;I)I",
+		garbageValue = "-2092030193"
+	)
+	@Export("parseInt")
+	public static int parseInt(CharSequence var0) {
+		return LoginScreenAnimation.parseIntCustomRadix(var0, 10, true); // L: 76
 	}
 
-	@ObfuscatedName("ja")
+	@ObfuscatedName("ex")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1394672948"
+		descriptor = "(Liy;Ljava/lang/String;I)V",
+		garbageValue = "2062536839"
 	)
-	static final void method4092() {
-		PacketBufferNode var0 = UserComparator4.getPacketBufferNode(ClientPacket.field2265, Client.packetWriter.isaacCipher);
-		Client.packetWriter.addNode(var0);
-
-		for (InterfaceParent var1 = (InterfaceParent)Client.interfaceParents.first(); var1 != null; var1 = (InterfaceParent)Client.interfaceParents.next()) {
-			if (var1.type == 0 || var1.type == 3) {
-				class41.closeInterface(var1, true);
-			}
-		}
-
-		if (Client.meslayerContinueWidget != null) {
-			class234.invalidateWidget(Client.meslayerContinueWidget);
-			Client.meslayerContinueWidget = null;
-		}
-
-	}
+	static void method4155(Archive var0, String var1) {
+		ArchiveLoader var2 = new ArchiveLoader(var0, var1); // L: 1383
+		Client.archiveLoaders.add(var2); // L: 1384
+		Client.field934 += var2.groupCount; // L: 1385
+	} // L: 1386
 }

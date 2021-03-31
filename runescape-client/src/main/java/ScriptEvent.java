@@ -4,210 +4,119 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bu")
+@ObfuscatedName("by")
 @Implements("ScriptEvent")
 public class ScriptEvent extends Node {
-	@ObfuscatedName("ri")
-	@ObfuscatedGetter(
-		intValue = 1137606481
-	)
-	static int field604;
-	@ObfuscatedName("h")
+	@ObfuscatedName("fj")
 	@ObfuscatedSignature(
-		signature = "Llh;"
+		descriptor = "Lkl;"
 	)
-	static IndexedSprite field597;
-	@ObfuscatedName("az")
-	@ObfuscatedGetter(
-		intValue = -2018552551
-	)
-	static int field606;
-	@ObfuscatedName("m")
+	@Export("fontBold12")
+	static Font fontBold12;
+	@ObfuscatedName("n")
 	@Export("args")
 	Object[] args;
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@Export("isMouseInputEvent")
 	boolean isMouseInputEvent;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "Lhd;"
+		descriptor = "Lhz;"
 	)
 	@Export("widget")
 	Widget widget;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -1176492869
+		intValue = 1697635159
 	)
 	@Export("mouseX")
 	int mouseX;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1543053859
+		intValue = 734230281
 	)
 	@Export("mouseY")
 	int mouseY;
-	@ObfuscatedName("g")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1384344567
+		intValue = 944694965
 	)
 	@Export("opIndex")
 	int opIndex;
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lhd;"
+		descriptor = "Lhz;"
 	)
 	@Export("dragTarget")
 	Widget dragTarget;
-	@ObfuscatedName("u")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 710326963
+		intValue = -905189557
 	)
 	@Export("keyTyped")
 	int keyTyped;
-	@ObfuscatedName("a")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -649367947
+		intValue = 220260505
 	)
 	@Export("keyPressed")
 	int keyPressed;
-	@ObfuscatedName("z")
+	@ObfuscatedName("l")
 	@Export("targetName")
 	String targetName;
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1551673037
+		intValue = -1071641047
 	)
-	int field600;
-	@ObfuscatedName("y")
+	int field593;
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1226589713
+		intValue = 1196618585
 	)
 	@Export("type")
 	int type;
 
 	public ScriptEvent() {
-		this.type = 76;
+		this.type = 76; // L: 19
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([Ljava/lang/Object;I)V",
-		garbageValue = "-2050703759"
+		descriptor = "([Ljava/lang/Object;I)V",
+		garbageValue = "807576822"
 	)
 	@Export("setArgs")
 	public void setArgs(Object[] var1) {
-		this.args = var1;
-	}
+		this.args = var1; // L: 22
+	} // L: 23
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "20"
+		descriptor = "(IB)V",
+		garbageValue = "-67"
 	)
 	@Export("setType")
 	public void setType(int var1) {
-		this.type = var1;
-	}
+		this.type = var1; // L: 26
+	} // L: 27
 
-	@ObfuscatedName("m")
-	public static final int method1235(double var0, double var2, double var4) {
-		double var6 = var4;
-		double var8 = var4;
-		double var10 = var4;
-		if (0.0D != var2) {
-			double var12;
-			if (var4 < 0.5D) {
-				var12 = var4 * (1.0D + var2);
-			} else {
-				var12 = var2 + var4 - var2 * var4;
-			}
-
-			double var14 = 2.0D * var4 - var12;
-			double var16 = var0 + 0.3333333333333333D;
-			if (var16 > 1.0D) {
-				--var16;
-			}
-
-			double var20 = var0 - 0.3333333333333333D;
-			if (var20 < 0.0D) {
-				++var20;
-			}
-
-			if (6.0D * var16 < 1.0D) {
-				var6 = var16 * (var12 - var14) * 6.0D + var14;
-			} else if (2.0D * var16 < 1.0D) {
-				var6 = var12;
-			} else if (3.0D * var16 < 2.0D) {
-				var6 = (0.6666666666666666D - var16) * (var12 - var14) * 6.0D + var14;
-			} else {
-				var6 = var14;
-			}
-
-			if (var0 * 6.0D < 1.0D) {
-				var8 = var14 + var0 * 6.0D * (var12 - var14);
-			} else if (2.0D * var0 < 1.0D) {
-				var8 = var12;
-			} else if (var0 * 3.0D < 2.0D) {
-				var8 = (var12 - var14) * (0.6666666666666666D - var0) * 6.0D + var14;
-			} else {
-				var8 = var14;
-			}
-
-			if (6.0D * var20 < 1.0D) {
-				var10 = var14 + var20 * 6.0D * (var12 - var14);
-			} else if (2.0D * var20 < 1.0D) {
-				var10 = var12;
-			} else if (3.0D * var20 < 2.0D) {
-				var10 = (0.6666666666666666D - var20) * (var12 - var14) * 6.0D + var14;
-			} else {
-				var10 = var14;
-			}
-		}
-
-		int var22 = (int)(256.0D * var6);
-		int var13 = (int)(var8 * 256.0D);
-		int var23 = (int)(var10 * 256.0D);
-		int var15 = var23 + (var13 << 8) + (var22 << 16);
-		return var15;
-	}
-
-	@ObfuscatedName("fv")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "303339948"
+		descriptor = "(B)V",
+		garbageValue = "1"
 	)
-	@Export("setWindowedMode")
-	static void setWindowedMode(int var0) {
-		Client.field886 = 0L;
-		if (var0 >= 2) {
-			Client.isResizable = true;
-		} else {
-			Client.isResizable = false;
-		}
+	public static void method1271() {
+		class105.reflectionChecks = new IterableNodeDeque(); // L: 24
+	} // L: 25
 
-		if (class58.getWindowedMode() == 1) {
-			WorldMapSectionType.client.setMaxCanvasSize(765, 503);
-		} else {
-			WorldMapSectionType.client.setMaxCanvasSize(7680, 2160);
-		}
-
-		if (Client.gameState >= 25) {
-			PacketBufferNode var1 = UserComparator4.getPacketBufferNode(ClientPacket.field2279, Client.packetWriter.isaacCipher);
-			var1.packetBuffer.writeByte(class58.getWindowedMode());
-			var1.packetBuffer.writeShort(Varcs.canvasWidth);
-			var1.packetBuffer.writeShort(class52.canvasHeight);
-			Client.packetWriter.addNode(var1);
-		}
-
-	}
-
-	@ObfuscatedName("hs")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;IIIII)V",
-		garbageValue = "-1977726761"
+		descriptor = "(I)V",
+		garbageValue = "-1068960678"
 	)
-	@Export("insertMenuItemNoShift")
-	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
-		ApproximateRouteStrategy.insertMenuItem(var0, var1, var2, var3, var4, var5, false);
-	}
+	public static void method1272() {
+		VertexNormal.midiPcmStream.clear(); // L: 44
+		class206.musicPlayerStatus = 1; // L: 45
+		class206.musicTrackArchive = null; // L: 46
+	} // L: 47
 }

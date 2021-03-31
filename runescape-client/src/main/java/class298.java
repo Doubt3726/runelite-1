@@ -2,63 +2,30 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kt")
-public final class class298 {
-	@ObfuscatedName("m")
-	@Export("base37Table")
-	static final char[] base37Table;
-	@ObfuscatedName("o")
-	static long[] field3671;
+@ObfuscatedName("kb")
+public class class298 {
+	@ObfuscatedName("n")
+	@Export("cp1252AsciiExtension")
+	public static final char[] cp1252AsciiExtension;
 
 	static {
-		base37Table = new char[]{'_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-		field3671 = new long[12];
-
-		for (int var0 = 0; var0 < field3671.length; ++var0) {
-			field3671[var0] = (long)Math.pow(37.0D, (double)var0);
-		}
-
+		cp1252AsciiExtension = new char[]{'€', '\u0000', '‚', 'ƒ', '„', '…', '†', '‡', 'ˆ', '‰', 'Š', '‹', 'Œ', '\u0000', 'Ž', '\u0000', '\u0000', '‘', '’', '“', '”', '•', '–', '—', '˜', '™', 'š', '›', 'œ', '\u0000', 'ž', 'Ÿ'}; // L: 4
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IZI)Ljava/lang/String;",
-		garbageValue = "-1481741683"
+		descriptor = "(Ljava/lang/Throwable;Ljava/lang/String;)Lmr;"
 	)
-	@Export("intToString")
-	public static String intToString(int var0, boolean var1) {
-		if (var1 && var0 >= 0) {
-			int var3 = var0;
-			String var2;
-			if (var1 && var0 >= 0) {
-				int var4 = 2;
-
-				for (int var5 = var0 / 10; var5 != 0; ++var4) {
-					var5 /= 10;
-				}
-
-				char[] var6 = new char[var4];
-				var6[0] = '+';
-
-				for (int var7 = var4 - 1; var7 > 0; --var7) {
-					int var8 = var3;
-					var3 /= 10;
-					int var9 = var8 - var3 * 10;
-					if (var9 >= 10) {
-						var6[var7] = (char)(var9 + 87);
-					} else {
-						var6[var7] = (char)(var9 + 48);
-					}
-				}
-
-				var2 = new String(var6);
-			} else {
-				var2 = Integer.toString(var0, 10);
-			}
-
-			return var2;
+	@Export("newRunException")
+	public static RunException newRunException(Throwable var0, String var1) {
+		RunException var2;
+		if (var0 instanceof RunException) { // L: 57
+			var2 = (RunException)var0; // L: 58
+			var2.message = var2.message + ' ' + var1; // L: 59
 		} else {
-			return Integer.toString(var0);
+			var2 = new RunException(var0, var1); // L: 61
 		}
+
+		return var2; // L: 62
 	}
 }

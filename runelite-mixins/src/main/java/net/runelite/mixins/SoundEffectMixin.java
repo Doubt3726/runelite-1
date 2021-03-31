@@ -57,13 +57,9 @@ public abstract class SoundEffectMixin implements RSClient
 	private static int lastSoundEffectSourceNPCid;
 
 	@Copy("updateActorSequence")
-	public static void rs$updateActorSequence(RSActor actor, int size)
-	{
-		throw new RuntimeException();
-	}
-
 	@Replace("updateActorSequence")
-	public static void rl$updateActorSequence(RSActor actor, int size)
+	@SuppressWarnings("InfiniteRecursion")
+	public static void copy$updateActorSequence(RSActor actor, int size)
 	{
 		if (actor instanceof RSNPC)
 		{
@@ -71,7 +67,7 @@ public abstract class SoundEffectMixin implements RSClient
 		}
 		lastSoundEffectSourceActor = actor;
 
-		rs$updateActorSequence(actor, size);
+		copy$updateActorSequence(actor, size);
 
 		lastSoundEffectSourceActor = null;
 	}
@@ -95,7 +91,7 @@ public abstract class SoundEffectMixin implements RSClient
 				lastSoundEffectSourceNPCid = -1;
 				event.setSoundId(client.getQueuedSoundEffectIDs()[soundIndex]);
 				event.setDelay(client.getQueuedSoundEffectDelays()[soundIndex]);
-				client.getCallbacks().post(SoundEffectPlayed.class, event);
+				client.getCallbacks().post(event);
 				consumed = event.isConsumed();
 			}
 			else
@@ -112,7 +108,7 @@ public abstract class SoundEffectMixin implements RSClient
 				event.setSceneY(y);
 				event.setRange(range);
 				event.setDelay(client.getQueuedSoundEffectDelays()[soundIndex]);
-				client.getCallbacks().post(AreaSoundEffectPlayed.class, event);
+				client.getCallbacks().post(event);
 				consumed = event.isConsumed();
 			}
 
@@ -177,7 +173,7 @@ public abstract class SoundEffectMixin implements RSClient
 		}
 
 		// If the current volume is not muted, use it instead
-		final int soundEffectVolume = getSoundEffectVolume();
+		final int soundEffectVolume = client.getPreferences().getSoundEffectVolume();
 		if (soundEffectVolume != SoundEffectVolume.MUTED)
 		{
 			volume = soundEffectVolume;

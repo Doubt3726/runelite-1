@@ -1,23 +1,26 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gh")
+@ObfuscatedName("gi")
 public class class198 {
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "Lic;"
+		descriptor = "(Lkd;I)I",
+		garbageValue = "832734688"
 	)
-	@Export("ParamDefinition_archive")
-	static AbstractArchive ParamDefinition_archive;
+	static int method3851(PacketBuffer var0) {
+		int var1 = var0.readBits(2); // L: 181
+		int var2;
+		if (var1 == 0) { // L: 183
+			var2 = 0;
+		} else if (var1 == 1) { // L: 184
+			var2 = var0.readBits(5);
+		} else if (var1 == 2) { // L: 185
+			var2 = var0.readBits(8);
+		} else {
+			var2 = var0.readBits(11); // L: 186
+		}
 
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "-100"
-	)
-	@Export("Widget_containerHasUseOption")
-	public static boolean Widget_containerHasUseOption(int var0) {
-		return (var0 >> 31 & 1) != 0;
+		return var2; // L: 187
 	}
 }

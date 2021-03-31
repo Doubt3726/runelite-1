@@ -28,6 +28,7 @@ import com.google.gson.JsonParseException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import lombok.AllArgsConstructor;
 import net.runelite.http.api.RuneLiteAPI;
 import okhttp3.HttpUrl;
@@ -39,7 +40,6 @@ import okhttp3.Response;
 @AllArgsConstructor
 public class ChatClient
 {
-	private static final RequestBody body = RequestBody.Companion.create(new byte[0], null);
 	private final OkHttpClient client;
 
 	public boolean submitKc(String username, String boss, int kc) throws IOException
@@ -171,7 +171,7 @@ public class ChatClient
 			}
 
 			InputStream in = response.body().byteStream();
-			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in), Task.class);
+			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), Task.class);
 		}
 		catch (JsonParseException ex)
 		{
@@ -179,14 +179,14 @@ public class ChatClient
 		}
 	}
 
-	public boolean submitPb(String username, String boss, int pb) throws IOException
+	public boolean submitPb(String username, String boss, double pb) throws IOException
 	{
 		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
 			.addPathSegment("chat")
 			.addPathSegment("pb")
 			.addQueryParameter("name", username)
 			.addQueryParameter("boss", boss)
-			.addQueryParameter("pb", Integer.toString(pb))
+			.addQueryParameter("pb", Double.toString(pb))
 			.build();
 
 		Request request = new Request.Builder()
@@ -200,7 +200,7 @@ public class ChatClient
 		}
 	}
 
-	public int getPb(String username, String boss) throws IOException
+	public double getPb(String username, String boss) throws IOException
 	{
 		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
 			.addPathSegment("chat")
@@ -219,7 +219,7 @@ public class ChatClient
 			{
 				throw new IOException("Unable to look up personal best!");
 			}
-			return Integer.parseInt(response.body().string());
+			return Double.parseDouble(response.body().string());
 		}
 	}
 
@@ -288,7 +288,6 @@ public class ChatClient
 		}
 	}
 
-
 	public Duels getDuels(String username) throws IOException
 	{
 		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
@@ -309,7 +308,7 @@ public class ChatClient
 			}
 
 			InputStream in = response.body().byteStream();
-			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in), Duels.class);
+			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), Duels.class);
 		}
 		catch (JsonParseException ex)
 		{
@@ -356,7 +355,7 @@ public class ChatClient
 			}
 
 			InputStream in = response.body().byteStream();
-			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in), LayoutRoom[].class);
+			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), LayoutRoom[].class);
 		}
 		catch (JsonParseException ex)
 		{

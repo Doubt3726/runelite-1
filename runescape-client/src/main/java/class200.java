@@ -1,45 +1,41 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gi")
+@ObfuscatedName("gx")
 public class class200 {
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lgi;"
+		descriptor = "Lgx;"
 	)
-	static final class200 field2400;
-	@ObfuscatedName("o")
+	static final class200 field2401;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lgi;"
+		descriptor = "Lgx;"
 	)
 	static final class200 field2398;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "Lgi;"
+		descriptor = "Lgx;"
 	)
-	static final class200 field2399;
+	static final class200 field2397;
+	@ObfuscatedName("y")
+	static byte[][][] field2399;
 
 	static {
-		field2400 = new class200();
-		field2398 = new class200();
-		field2399 = new class200();
+		field2401 = new class200(); // L: 4
+		field2398 = new class200(); // L: 5
+		field2397 = new class200(); // L: 6
 	}
 
 	class200() {
-	}
+	} // L: 8
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IZII)V",
-		garbageValue = "405257362"
+		descriptor = "(II)I",
+		garbageValue = "1474141491"
 	)
-	public static final void method3803(int var0, boolean var1, int var2) {
-		if (var0 >= 8000 && var0 <= 48000) {
-			class237.field3113 = var0;
-			Messages.PcmPlayer_stereo = var1;
-			UserComparator3.field2009 = var2;
-		} else {
-			throw new IllegalArgumentException();
-		}
+	public static int method3865(int var0) {
+		return ReflectionCheck.method2451(ViewportMouse.ViewportMouse_entityTags[var0]); // L: 56
 	}
 }

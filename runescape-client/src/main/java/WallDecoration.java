@@ -4,72 +4,78 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ep")
+@ObfuscatedName("eu")
 @Implements("WallDecoration")
 public final class WallDecoration {
-	@ObfuscatedName("m")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1099689565
+		intValue = 964756049
+	)
+	@Export("clientTickTimeIdx")
+	static int clientTickTimeIdx;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = 719575047
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1128423733
+		intValue = -920611555
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -242275183
+		intValue = -730740551
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 255410517
+		intValue = 333766323
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1472318581
+		intValue = 1617230319
 	)
 	@Export("orientation2")
 	int orientation2;
-	@ObfuscatedName("g")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 96520519
+		intValue = 2092861143
 	)
 	@Export("xOffset")
 	int xOffset;
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -752151105
+		intValue = 1518269047
 	)
 	@Export("yOffset")
 	int yOffset;
-	@ObfuscatedName("u")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "Lel;"
+		descriptor = "Lem;"
 	)
-	@Export("entity1")
-	public Entity entity1;
-	@ObfuscatedName("a")
+	@Export("renderable1")
+	public Renderable renderable1;
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "Lel;"
+		descriptor = "Lem;"
 	)
-	@Export("entity2")
-	public Entity entity2;
-	@ObfuscatedName("z")
+	@Export("renderable2")
+	public Renderable renderable2;
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		longValue = 7567781693564802897L
+		longValue = 1249498855339190201L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1087358253
+		intValue = -1390179163
 	)
 	@Export("flags")
 	int flags;
@@ -79,99 +85,64 @@ public final class WallDecoration {
 		this.flags = 0;
 	}
 
-	@ObfuscatedName("fu")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "764201281"
+		descriptor = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
+		garbageValue = "699816166"
 	)
-	@Export("doCheat")
-	static final void doCheat(String var0) {
-		if (var0.equalsIgnoreCase("toggleroof")) {
-			NetSocket.clientPreferences.roofsHidden = !NetSocket.clientPreferences.roofsHidden;
-			SpriteMask.savePreferences();
-			if (NetSocket.clientPreferences.roofsHidden) {
-				ObjectSound.addGameMessage(99, "", "Roofs are now all hidden");
+	public static String method3450(CharSequence var0) {
+		int var1 = var0.length(); // L: 11
+		StringBuilder var2 = new StringBuilder(var1); // L: 12
+
+		for (int var3 = 0; var3 < var1; ++var3) { // L: 13
+			char var4 = var0.charAt(var3); // L: 14
+			if ((var4 < 'a' || var4 > 'z') && (var4 < 'A' || var4 > 'Z') && (var4 < '0' || var4 > '9') && var4 != '.' && var4 != '-' && var4 != '*' && var4 != '_') { // L: 15
+				if (var4 == ' ') { // L: 16
+					var2.append('+');
+				} else {
+					byte var5 = LoginPacket.charToByteCp1252(var4); // L: 18
+					var2.append('%'); // L: 19
+					int var6 = var5 >> 4 & 15; // L: 20
+					if (var6 >= 10) { // L: 21
+						var2.append((char)(var6 + 55));
+					} else {
+						var2.append((char)(var6 + 48)); // L: 22
+					}
+
+					var6 = var5 & 15; // L: 23
+					if (var6 >= 10) { // L: 24
+						var2.append((char)(var6 + 55));
+					} else {
+						var2.append((char)(var6 + 48));
+					}
+				}
 			} else {
-				ObjectSound.addGameMessage(99, "", "Roofs will only be removed selectively");
+				var2.append(var4); // L: 25
 			}
 		}
 
-		if (var0.equalsIgnoreCase("displayfps")) {
-			Client.displayFps = !Client.displayFps;
-		}
-
-		if (var0.equalsIgnoreCase("renderself")) {
-			Client.renderSelf = !Client.renderSelf;
-		}
-
-		if (var0.equalsIgnoreCase("mouseovertext")) {
-			Client.showMouseOverText = !Client.showMouseOverText;
-		}
-
-		if (Client.staffModLevel >= 2) {
-			if (var0.equalsIgnoreCase("errortest")) {
-				throw new RuntimeException();
-			}
-
-			if (var0.equalsIgnoreCase("showcoord")) {
-				class228.worldMap.showCoord = !class228.worldMap.showCoord;
-			}
-
-			if (var0.equalsIgnoreCase("fpson")) {
-				Client.displayFps = true;
-			}
-
-			if (var0.equalsIgnoreCase("fpsoff")) {
-				Client.displayFps = false;
-			}
-
-			if (var0.equalsIgnoreCase("gc")) {
-				System.gc();
-			}
-
-			if (var0.equalsIgnoreCase("clientdrop")) {
-				CollisionMap.method3707();
-			}
-		}
-
-		PacketBufferNode var1 = UserComparator4.getPacketBufferNode(ClientPacket.field2268, Client.packetWriter.isaacCipher);
-		var1.packetBuffer.writeByte(var0.length() + 1);
-		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-		Client.packetWriter.addNode(var1);
+		return var2.toString(); // L: 28
 	}
 
-	@ObfuscatedName("ir")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lhd;Ljo;IIZI)V",
-		garbageValue = "-771039466"
+		descriptor = "(II)Ljo;",
+		garbageValue = "1862361389"
 	)
-	@Export("addWidgetItemMenuItem")
-	static final void addWidgetItemMenuItem(Widget widget, ItemDefinition itemDef, int slotIdx, int actionIdx, boolean forceLeftClick) {
-		String[] itemActions = itemDef.inventoryActions;
-		byte opcode = -1;
-		String action = null;
-		if (itemActions != null && itemActions[actionIdx] != null) {
-			if (actionIdx == 0) {
-				opcode = 33;
-			} else if (actionIdx == 1) {
-				opcode = 34;
-			} else if (actionIdx == 2) {
-				opcode = 35;
-			} else if (actionIdx == 3) {
-				opcode = 36;
-			} else {
-				opcode = 37;
+	public static FloorOverlayDefinition method3449(int var0) {
+		FloorOverlayDefinition var1 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var0); // L: 30
+		if (var1 != null) { // L: 31
+			return var1;
+		} else {
+			byte[] var2 = FloorOverlayDefinition.FloorOverlayDefinition_archive.takeFile(4, var0); // L: 32
+			var1 = new FloorOverlayDefinition(); // L: 33
+			if (var2 != null) { // L: 34
+				var1.decode(new Buffer(var2), var0);
 			}
 
-			action = itemActions[actionIdx];
-		} else if (actionIdx == 4) {
-			opcode = 37;
-			action = "Drop";
+			var1.postDecode(); // L: 35
+			FloorOverlayDefinition.FloorOverlayDefinition_cached.put(var1, (long)var0); // L: 36
+			return var1; // L: 37
 		}
-
-		if (opcode != -1 && action != null) {
-			ApproximateRouteStrategy.insertMenuItem(action, ItemContainer.colorStartTag(16748608) + itemDef.name, opcode, itemDef.id, slotIdx, widget.id, forceLeftClick);
-		}
-
 	}
 }

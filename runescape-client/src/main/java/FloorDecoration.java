@@ -4,51 +4,46 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eu")
+@ObfuscatedName("en")
 @Implements("FloorDecoration")
 public final class FloorDecoration {
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		longValue = 423292381861362449L
-	)
-	@Export("tag")
-	public long tag;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = 1344836879
+		intValue = 1598532417
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -732713561
+		intValue = 142791141
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("j")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -799217819
+		intValue = 319839389
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("p")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "Lel;"
+		descriptor = "Lem;"
 	)
-	@Export("entity")
-	public Entity entity;
-	@ObfuscatedName("g")
+	@Export("renderable")
+	public Renderable renderable;
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1173464785
+		longValue = 5699265069963851797L
+	)
+	@Export("tag")
+	public long tag;
+	@ObfuscatedName("h")
+	@ObfuscatedGetter(
+		intValue = -641786975
 	)
 	@Export("flags")
 	int flags;
 
 	FloorDecoration() {
-	}
-
-	@ObfuscatedName("o")
-	static boolean method2977(long var0) {
-		return class171.Entity_unpackType(var0) == 2;
-	}
+	} // L: 11
 }

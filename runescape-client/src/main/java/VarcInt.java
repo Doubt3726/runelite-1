@@ -3,88 +3,58 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iu")
+@ObfuscatedName("ia")
 @Implements("VarcInt")
 public class VarcInt extends DualNode {
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lic;"
+		descriptor = "Lig;"
 	)
 	@Export("VarcInt_archive")
 	public static AbstractArchive VarcInt_archive;
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lec;"
+		descriptor = "Lex;"
 	)
 	@Export("VarcInt_cached")
 	public static EvictingDualNodeHashTable VarcInt_cached;
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		signature = "Lic;"
-	)
-	@Export("ItemDefinition_archive")
-	static AbstractArchive ItemDefinition_archive;
-	@ObfuscatedName("eu")
-	@ObfuscatedSignature(
-		signature = "Lig;"
-	)
-	@Export("archive18")
-	static Archive archive18;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@Export("persist")
 	public boolean persist;
 
 	static {
-		VarcInt_cached = new EvictingDualNodeHashTable(64);
+		VarcInt_cached = new EvictingDualNodeHashTable(64); // L: 11
 	}
 
 	public VarcInt() {
-		this.persist = false;
+		this.persist = false; // L: 12
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkn;B)V",
-		garbageValue = "121"
+		descriptor = "(Lkx;B)V",
+		garbageValue = "-111"
 	)
-	public void method4573(Buffer var1) {
+	public void method4594(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte();
-			if (var2 == 0) {
-				return;
+			int var2 = var1.readUnsignedByte(); // L: 20
+			if (var2 == 0) { // L: 21
+				return; // L: 24
 			}
 
-			this.method4569(var1, var2);
+			this.method4595(var1, var2); // L: 22
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkn;II)V",
-		garbageValue = "1038318542"
+		descriptor = "(Lkx;II)V",
+		garbageValue = "-1938056419"
 	)
-	void method4569(Buffer var1, int var2) {
-		if (var2 == 2) {
-			this.persist = true;
+	void method4595(Buffer var1, int var2) {
+		if (var2 == 2) { // L: 27
+			this.persist = true; // L: 28
 		}
 
-	}
-
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		signature = "(Ldf;I)V",
-		garbageValue = "1745274917"
-	)
-	@Export("PcmStream_disable")
-	static final void PcmStream_disable(PcmStream var0) {
-		var0.active = false;
-		if (var0.sound != null) {
-			var0.sound.position = 0;
-		}
-
-		for (PcmStream var1 = var0.firstSubStream(); var1 != null; var1 = var0.nextSubStream()) {
-			PcmStream_disable(var1);
-		}
-
-	}
+	} // L: 31
 }

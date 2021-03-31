@@ -4,176 +4,125 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("cn")
 @Implements("Interpreter")
 public class Interpreter {
-	@ObfuscatedName("q")
+	@ObfuscatedName("y")
 	@Export("Interpreter_intLocals")
 	static int[] Interpreter_intLocals;
-	@ObfuscatedName("j")
-	@Export("Interpreter_stringLocals")
-	static String[] Interpreter_stringLocals;
-	@ObfuscatedName("p")
+	@ObfuscatedName("z")
 	@Export("Interpreter_arrayLengths")
 	static int[] Interpreter_arrayLengths;
-	@ObfuscatedName("g")
+	@ObfuscatedName("e")
 	@Export("Interpreter_arrays")
 	static int[][] Interpreter_arrays;
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@Export("Interpreter_intStack")
 	static int[] Interpreter_intStack;
-	@ObfuscatedName("a")
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = 1775407691
+	)
+	@Export("Interpreter_intStackSize")
+	static int Interpreter_intStackSize;
+	@ObfuscatedName("s")
 	@Export("Interpreter_stringStack")
 	static String[] Interpreter_stringStack;
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1436904999
+		intValue = -1832147507
+	)
+	@Export("Interpreter_stringStackSize")
+	static int Interpreter_stringStackSize;
+	@ObfuscatedName("a")
+	@ObfuscatedGetter(
+		intValue = 1349197587
 	)
 	@Export("Interpreter_frameDepth")
 	static int Interpreter_frameDepth;
-	@ObfuscatedName("y")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "[Lbp;"
+		descriptor = "[Lbz;"
 	)
 	@Export("Interpreter_frames")
 	static ScriptFrame[] Interpreter_frames;
 	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		descriptor = "Lhz;"
+	)
+	@Export("scriptActiveWidget")
+	static Widget scriptActiveWidget;
+	@ObfuscatedName("x")
 	@Export("Interpreter_calendar")
 	static java.util.Calendar Interpreter_calendar;
-	@ObfuscatedName("r")
+	@ObfuscatedName("f")
 	@Export("Interpreter_MONTHS")
 	static final String[] Interpreter_MONTHS;
-	@ObfuscatedName("v")
-	static boolean field1125;
-	@ObfuscatedName("d")
-	static boolean field1118;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = 544842363
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		descriptor = "Lav;"
 	)
-	static int field1132;
-	@ObfuscatedName("b")
-	static final double field1126;
+	@Export("worldMapEvent")
+	static WorldMapEvent worldMapEvent;
+	@ObfuscatedName("u")
+	static boolean field1120;
+	@ObfuscatedName("t")
+	static boolean field1122;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = 365610695
+	)
+	static int field1123;
+	@ObfuscatedName("j")
+	static final double field1124;
+	@ObfuscatedName("ea")
+	@ObfuscatedGetter(
+		intValue = 847561081
+	)
+	static int field1116;
+	@ObfuscatedName("gk")
+	@Export("regionMapArchives")
+	static byte[][] regionMapArchives;
 
 	static {
-		Interpreter_arrayLengths = new int[5];
-		Interpreter_arrays = new int[5][5000];
-		Interpreter_intStack = new int[1000];
-		Interpreter_stringStack = new String[1000];
-		Interpreter_frameDepth = 0;
-		Interpreter_frames = new ScriptFrame[50];
-		Interpreter_calendar = java.util.Calendar.getInstance();
-		Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-		field1125 = false;
-		field1118 = false;
-		field1132 = 0;
-		field1126 = Math.log(2.0D);
+		Interpreter_arrayLengths = new int[5]; // L: 70
+		Interpreter_arrays = new int[5][5000]; // L: 71
+		Interpreter_intStack = new int[1000]; // L: 72
+		Interpreter_stringStack = new String[1000]; // L: 74
+		Interpreter_frameDepth = 0; // L: 76
+		Interpreter_frames = new ScriptFrame[50]; // L: 77
+		Interpreter_calendar = java.util.Calendar.getInstance(); // L: 80
+		Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}; // L: 83
+		field1120 = false; // L: 86
+		field1122 = false; // L: 87
+		field1123 = 0; // L: 88
+		field1124 = Math.log(2.0D); // L: 92
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(IILga;Lfz;S)Z",
-		garbageValue = "-8766"
+		descriptor = "(IIII)I",
+		garbageValue = "-1493110038"
 	)
-	static final boolean method2112(int var0, int var1, RouteStrategy var2, CollisionMap var3) {
-		int var4 = var0;
-		int var5 = var1;
-		byte var6 = 64;
-		byte var7 = 64;
-		int var8 = var0 - var6;
-		int var9 = var1 - var7;
-		class182.directions[var6][var7] = 99;
-		class182.distances[var6][var7] = 0;
-		byte var10 = 0;
-		int var11 = 0;
-		class182.bufferX[var10] = var0;
-		byte var10001 = var10;
-		int var18 = var10 + 1;
-		class182.bufferY[var10001] = var1;
-		int[][] var12 = var3.flags;
-
-		while (var11 != var18) {
-			var4 = class182.bufferX[var11];
-			var5 = class182.bufferY[var11];
-			var11 = var11 + 1 & 4095;
-			int var16 = var4 - var8;
-			int var17 = var5 - var9;
-			int var13 = var4 - var3.xInset;
-			int var14 = var5 - var3.yInset;
-			if (var2.hasArrived(1, var4, var5, var3)) {
-				class182.field2132 = var4;
-				GrandExchangeOfferOwnWorldComparator.field666 = var5;
-				return true;
-			}
-
-			int var15 = class182.distances[var16][var17] + 1;
-			if (var16 > 0 && class182.directions[var16 - 1][var17] == 0 && (var12[var13 - 1][var14] & 19136776) == 0) {
-				class182.bufferX[var18] = var4 - 1;
-				class182.bufferY[var18] = var5;
-				var18 = var18 + 1 & 4095;
-				class182.directions[var16 - 1][var17] = 2;
-				class182.distances[var16 - 1][var17] = var15;
-			}
-
-			if (var16 < 127 && class182.directions[var16 + 1][var17] == 0 && (var12[var13 + 1][var14] & 19136896) == 0) {
-				class182.bufferX[var18] = var4 + 1;
-				class182.bufferY[var18] = var5;
-				var18 = var18 + 1 & 4095;
-				class182.directions[var16 + 1][var17] = 8;
-				class182.distances[var16 + 1][var17] = var15;
-			}
-
-			if (var17 > 0 && class182.directions[var16][var17 - 1] == 0 && (var12[var13][var14 - 1] & 19136770) == 0) {
-				class182.bufferX[var18] = var4;
-				class182.bufferY[var18] = var5 - 1;
-				var18 = var18 + 1 & 4095;
-				class182.directions[var16][var17 - 1] = 1;
-				class182.distances[var16][var17 - 1] = var15;
-			}
-
-			if (var17 < 127 && class182.directions[var16][var17 + 1] == 0 && (var12[var13][var14 + 1] & 19136800) == 0) {
-				class182.bufferX[var18] = var4;
-				class182.bufferY[var18] = var5 + 1;
-				var18 = var18 + 1 & 4095;
-				class182.directions[var16][var17 + 1] = 4;
-				class182.distances[var16][var17 + 1] = var15;
-			}
-
-			if (var16 > 0 && var17 > 0 && class182.directions[var16 - 1][var17 - 1] == 0 && (var12[var13 - 1][var14 - 1] & 19136782) == 0 && (var12[var13 - 1][var14] & 19136776) == 0 && (var12[var13][var14 - 1] & 19136770) == 0) {
-				class182.bufferX[var18] = var4 - 1;
-				class182.bufferY[var18] = var5 - 1;
-				var18 = var18 + 1 & 4095;
-				class182.directions[var16 - 1][var17 - 1] = 3;
-				class182.distances[var16 - 1][var17 - 1] = var15;
-			}
-
-			if (var16 < 127 && var17 > 0 && class182.directions[var16 + 1][var17 - 1] == 0 && (var12[var13 + 1][var14 - 1] & 19136899) == 0 && (var12[var13 + 1][var14] & 19136896) == 0 && (var12[var13][var14 - 1] & 19136770) == 0) {
-				class182.bufferX[var18] = var4 + 1;
-				class182.bufferY[var18] = var5 - 1;
-				var18 = var18 + 1 & 4095;
-				class182.directions[var16 + 1][var17 - 1] = 9;
-				class182.distances[var16 + 1][var17 - 1] = var15;
-			}
-
-			if (var16 > 0 && var17 < 127 && class182.directions[var16 - 1][var17 + 1] == 0 && (var12[var13 - 1][var14 + 1] & 19136824) == 0 && (var12[var13 - 1][var14] & 19136776) == 0 && (var12[var13][var14 + 1] & 19136800) == 0) {
-				class182.bufferX[var18] = var4 - 1;
-				class182.bufferY[var18] = var5 + 1;
-				var18 = var18 + 1 & 4095;
-				class182.directions[var16 - 1][var17 + 1] = 6;
-				class182.distances[var16 - 1][var17 + 1] = var15;
-			}
-
-			if (var16 < 127 && var17 < 127 && class182.directions[var16 + 1][var17 + 1] == 0 && (var12[var13 + 1][var14 + 1] & 19136992) == 0 && (var12[var13 + 1][var14] & 19136896) == 0 && (var12[var13][var14 + 1] & 19136800) == 0) {
-				class182.bufferX[var18] = var4 + 1;
-				class182.bufferY[var18] = var5 + 1;
-				var18 = var18 + 1 & 4095;
-				class182.directions[var16 + 1][var17 + 1] = 12;
-				class182.distances[var16 + 1][var17 + 1] = var15;
-			}
+	@Export("hslToRgb")
+	static final int hslToRgb(int var0, int var1, int var2) {
+		if (var2 > 179) { // L: 586
+			var1 /= 2;
 		}
 
-		class182.field2132 = var4;
-		GrandExchangeOfferOwnWorldComparator.field666 = var5;
-		return false;
+		if (var2 > 192) { // L: 587
+			var1 /= 2;
+		}
+
+		if (var2 > 217) { // L: 588
+			var1 /= 2;
+		}
+
+		if (var2 > 243) { // L: 589
+			var1 /= 2;
+		}
+
+		int var3 = (var1 / 32 << 7) + (var0 / 4 << 10) + var2 / 2; // L: 590
+		return var3; // L: 591
 	}
 }

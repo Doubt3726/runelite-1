@@ -49,7 +49,6 @@ public class GraphicID
 	public static final int BOOK_HOME_TELEPORT_3 = 803;
 	public static final int BOOK_HOME_TELEPORT_4 = 804;
 	public static final int STAFF_OF_THE_DEAD = 1228;
-	public static final int IMBUED_HEART = 1316;
 	public static final int FLYING_FISH = 1387;
 	public static final int OLM_BURN = 1351;
 	public static final int OLM_LIGHTNING = 1356;
@@ -58,4 +57,5 @@ public class GraphicID
 	public static final int OLM_CRYSTAL = 1447;
 	public static final int XERIC_TELEPORT = 1612;
 	public static final int HYDRA_LIGHTNING = 1666;
+	public static final int GRAPHICS_OBJECT_ROCKFALL = 1727;
 }

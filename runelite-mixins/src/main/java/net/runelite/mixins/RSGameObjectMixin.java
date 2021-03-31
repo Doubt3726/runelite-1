@@ -33,7 +33,7 @@ import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSEntity;
+import net.runelite.rs.api.RSRenderable;
 import net.runelite.rs.api.RSGameObject;
 import net.runelite.rs.api.RSModel;
 
@@ -47,21 +47,21 @@ public abstract class RSGameObjectMixin implements RSGameObject
 	@Override
 	public Point getSceneMinLocation()
 	{
-		return new Point(getRelativeX(), getRelativeY());
+		return new Point(getStartX(), getStartY());
 	}
 
 	@Inject
 	@Override
 	public Point getSceneMaxLocation()
 	{
-		return new Point(getOffsetX(), getOffsetY());
+		return new Point(getEndX(), getEndY());
 	}
 
 	@Inject
 	@Override
 	public RSModel getModel()
 	{
-		RSEntity renderable = getEntity();
+		RSRenderable renderable = getRenderable();
 		if (renderable == null)
 		{
 			return null;
@@ -107,5 +107,19 @@ public abstract class RSGameObjectMixin implements RSGameObject
 		int orientation = getRsOrientation();
 		int rotation = (getFlags() >> 6) & 3;
 		return new Angle(rotation * 512 + orientation);
+	}
+
+	@Override
+	@Inject
+	public int sizeX()
+	{
+		return getEndX() - getStartX() + 1;
+	}
+
+	@Override
+	@Inject
+	public int sizeY()
+	{
+		return getEndY() - getStartY() + 1;
 	}
 }

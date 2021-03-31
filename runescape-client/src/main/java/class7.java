@@ -2,155 +2,112 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("u")
+@ObfuscatedName("e")
 public enum class7 implements Enumerated {
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lu;"
+		descriptor = "Le;"
 	)
-	field30(0, 0);
+	field41(0, 0);
 
-	@ObfuscatedName("ox")
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = 324550527
+	)
+	@Export("pcmSampleLength")
+	public static int pcmSampleLength;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = 501713391
+	)
+	static int field35;
+	@ObfuscatedName("bh")
 	@ObfuscatedSignature(
-		signature = "Lfv;"
+		descriptor = "Lly;"
 	)
-	@Export("mouseWheel")
-	static MouseWheel mouseWheel;
-	@ObfuscatedName("eb")
-	static int[] field28;
-	@ObfuscatedName("o")
+	@Export("worldSelectLeftSprite")
+	static IndexedSprite worldSelectLeftSprite;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -372916347
+		intValue = -997715077
 	)
-	public final int field26;
-	@ObfuscatedName("q")
+	public final int field36;
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 546495013
+		intValue = -1130896925
 	)
-	final int field27;
+	final int field37;
 
 	class7(int var3, int var4) {
-		this.field26 = var3;
-		this.field27 = var4;
-	}
+		this.field36 = var3; // L: 16
+		this.field37 = var4;
+	} // L: 18
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-995092303"
+		descriptor = "(B)I",
+		garbageValue = "63"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field27;
+		return this.field37; // L: 21
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)V",
-		garbageValue = "-89"
+		descriptor = "(I)[Lgs;",
+		garbageValue = "2004297055"
 	)
-	static final void method95(String var0) {
-		StringBuilder var10000 = new StringBuilder();
-		Object var10001 = null;
-		var10000 = var10000.append("Please remove ").append(var0);
-		var10001 = null;
-		String var1 = var10000.append(" from your ignore list first").toString();
-		ObjectSound.addGameMessage(30, "", var1);
+	public static class194[] method85() {
+		return new class194[]{class194.field2348, class194.field2354, class194.field2347, class194.field2356, class194.field2350, class194.field2351, class194.field2352, class194.field2353, class194.field2346, class194.field2355}; // L: 17
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("hi")
 	@ObfuscatedSignature(
-		signature = "(IIS)Z",
-		garbageValue = "17445"
+		descriptor = "(ILjava/lang/String;B)V",
+		garbageValue = "-63"
 	)
-	static final boolean method97(int var0, int var1) {
-		ObjectDefinition var2 = Canvas.getObjectDefinition(var0);
-		if (var1 == 11) {
-			var1 = 10;
-		}
+	static void method83(int var0, String var1) {
+		int var2 = Players.Players_count; // L: 8818
+		int[] var3 = Players.Players_indices; // L: 8819
+		boolean var4 = false; // L: 8820
+		Username var5 = new Username(var1, Message.loginType); // L: 8821
 
-		if (var1 >= 5 && var1 <= 8) {
-			var1 = 4;
-		}
-
-		return var2.method4786(var1);
-	}
-
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		signature = "(ILcs;ZI)I",
-		garbageValue = "669918470"
-	)
-	static int method100(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? KeyHandler.field407 : SecureRandomCallable.field544;
-		if (var0 == ScriptOpcodes.CC_GETTARGETMASK) {
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = WorldMapID.Widget_unpackTargetMask(KeyHandler.getWidgetFlags(var3));
-			return 1;
-		} else if (var0 != ScriptOpcodes.CC_GETOP) {
-			if (var0 == ScriptOpcodes.CC_GETOPBASE) {
-				if (var3.dataText == null) {
-					Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = "";
-				} else {
-					Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = var3.dataText;
+		for (int var6 = 0; var6 < var2; ++var6) { // L: 8822
+			Player var7 = Client.players[var3[var6]]; // L: 8823
+			if (var7 != null && var7 != UserComparator9.localPlayer && var7.username != null && var7.username.equals(var5)) { // L: 8824
+				PacketBufferNode var8;
+				if (var0 == 1) { // L: 8825
+					var8 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2313, Client.packetWriter.isaacCipher); // L: 8827
+					var8.packetBuffer.writeShortLE(var3[var6]); // L: 8828
+					var8.packetBuffer.method5931(0); // L: 8829
+					Client.packetWriter.addNode(var8); // L: 8830
+				} else if (var0 == 4) { // L: 8832
+					var8 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2275, Client.packetWriter.isaacCipher); // L: 8834
+					var8.packetBuffer.writeShortLE(var3[var6]); // L: 8835
+					var8.packetBuffer.method5931(0); // L: 8836
+					Client.packetWriter.addNode(var8); // L: 8837
+				} else if (var0 == 6) { // L: 8839
+					var8 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2239, Client.packetWriter.isaacCipher); // L: 8841
+					var8.packetBuffer.writeShort(var3[var6]); // L: 8842
+					var8.packetBuffer.writeByte(0); // L: 8843
+					Client.packetWriter.addNode(var8); // L: 8844
+				} else if (var0 == 7) { // L: 8846
+					var8 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2308, Client.packetWriter.isaacCipher); // L: 8848
+					var8.packetBuffer.method5883(0); // L: 8849
+					var8.packetBuffer.writeIntME(var3[var6]); // L: 8850
+					Client.packetWriter.addNode(var8); // L: 8851
 				}
 
-				return 1;
-			} else {
-				return 2;
+				var4 = true; // L: 8853
+				break;
 			}
-		} else {
-			int var4 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-			--var4;
-			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
-				Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = var3.actions[var4];
-			} else {
-				Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = "";
-			}
-
-			return 1;
-		}
-	}
-
-	@ObfuscatedName("gm")
-	@ObfuscatedSignature(
-		signature = "(S)Z",
-		garbageValue = "255"
-	)
-	static boolean method98() {
-		return (Client.drawPlayerNames & 4) != 0;
-	}
-
-	@ObfuscatedName("hv")
-	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "-1244259463"
-	)
-	static final boolean method94(int var0) {
-		if (var0 < 0) {
-			return false;
-		} else {
-			int var1 = Client.menuOpcodes[var0];
-			if (var1 >= 2000) {
-				var1 -= 2000;
-			}
-
-			return var1 == 1007;
-		}
-	}
-
-	@ObfuscatedName("jw")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "9"
-	)
-	@Export("FriendSystem_invalidateFriends")
-	static final void FriendSystem_invalidateFriends() {
-		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
-			Player var1 = Client.players[Players.Players_indices[var0]];
-			var1.clearIsInClanChat();
 		}
 
-	}
+		if (!var4) { // L: 8857
+			AbstractWorldMapData.addGameMessage(4, "", "Unable to find " + var1);
+		}
+
+	} // L: 8858
 }

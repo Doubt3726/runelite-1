@@ -6,19 +6,18 @@ import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSGameShell;
+import net.runelite.rs.api.RSGameEngine;
 
-@Mixin(RSGameShell.class)
-public abstract class StretchedModeMaxSizeMixin implements RSGameShell
+@Mixin(RSGameEngine.class)
+public abstract class StretchedModeMaxSizeMixin implements RSGameEngine
 {
 	@Shadow("client")
 	private static RSClient client;
 
 	@Copy("resizeCanvas")
-	abstract void rs$resizeCanvas();
-
 	@Replace("resizeCanvas")
-	public void rl$resizeCanvas()
+	@SuppressWarnings("InfiniteRecursion")
+	public void copy$resizeCanvas()
 	{
 		if (client.isStretchedEnabled())
 		{
@@ -33,20 +32,18 @@ public abstract class StretchedModeMaxSizeMixin implements RSGameShell
 			}
 		}
 
-		rs$resizeCanvas();
+		copy$resizeCanvas();
 	}
 
 	@Copy("setMaxCanvasSize")
-	abstract void rs$setMaxCanvasSize(int width, int height);
-
 	@Replace("setMaxCanvasSize")
-	public void rl$setMaxCanvasSize(int width, int height)
+	public void copy$setMaxCanvasSize(int width, int height)
 	{
 		if (client.isStretchedEnabled() && client.isResized())
 		{
 			return;
 		}
 
-		rs$setMaxCanvasSize(width, height);
+		copy$setMaxCanvasSize(width, height);
 	}
 }

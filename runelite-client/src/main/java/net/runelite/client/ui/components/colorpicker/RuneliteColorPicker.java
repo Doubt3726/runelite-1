@@ -65,7 +65,7 @@ public class RuneliteColorPicker extends JDialog
 {
 	static final String CONFIG_GROUP = "colorpicker";
 
-	private final static int FRAME_WIDTH = 400;
+	private final static int FRAME_WIDTH = 410;
 	private final static int FRAME_HEIGHT = 380;
 	private final static int TONE_PANEL_SIZE = 160;
 
@@ -94,7 +94,7 @@ public class RuneliteColorPicker extends JDialog
 	private Consumer<Color> onClose;
 
 	RuneliteColorPicker(Window parent, Color previousColor, String title, boolean alphaHidden,
-						final ConfigManager configManager, final ColorPickerManager colorPickerManager)
+		final ConfigManager configManager, final ColorPickerManager colorPickerManager)
 	{
 		super(parent, "RuneLite Color Picker - " + title, ModalityType.MODELESS);
 

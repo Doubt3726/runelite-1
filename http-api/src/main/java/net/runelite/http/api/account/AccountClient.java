@@ -25,10 +25,10 @@
 package net.runelite.http.api.account;
 
 import com.google.gson.JsonParseException;
-import io.reactivex.rxjava3.core.Observable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -67,7 +67,7 @@ public class AccountClient
 		try (Response response = client.newCall(request).execute())
 		{
 			InputStream in = response.body().byteStream();
-			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in), OAuthResponse.class);
+			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), OAuthResponse.class);
 		}
 		catch (JsonParseException ex)
 		{
@@ -95,7 +95,7 @@ public class AccountClient
 		}
 	}
 
-	public Observable<Boolean> sessionCheck()
+	public boolean sessionCheck()
 	{
 		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
 			.addPathSegment("account")
@@ -103,23 +103,20 @@ public class AccountClient
 			.build();
 
 		log.debug("Built URI: {}", url);
-		
-		return Observable.fromCallable(() ->
-		{
-			Request request = new Request.Builder()
-				.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
-				.url(url)
-				.build();
 
-			try (Response response = client.newCall(request).execute())
-			{
-					return response.isSuccessful();
-			}
-			catch (IOException ex)
-			{
-				log.debug("Unable to verify session", ex);
-				return true; // assume it is still valid if the server is unreachable
-			}
-		});
+		Request request = new Request.Builder()
+			.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
+			.url(url)
+			.build();
+
+		try (Response response = client.newCall(request).execute())
+		{
+			return response.isSuccessful();
+		}
+		catch (IOException ex)
+		{
+			log.debug("Unable to verify session", ex);
+			return true; // assume it is still valid if the server is unreachable
+		}
 	}
 }

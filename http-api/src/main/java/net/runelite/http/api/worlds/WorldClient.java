@@ -29,10 +29,10 @@ import com.google.gson.JsonParseException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.http.api.RuneLiteAPI;
-import okhttp3.CacheControl;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -54,7 +54,6 @@ public class WorldClient
 
 		Request request = new Request.Builder()
 			.url(url)
-			.cacheControl(CacheControl.FORCE_NETWORK)
 			.build();
 
 		try (Response response = client.newCall(request).execute())
@@ -66,7 +65,7 @@ public class WorldClient
 			}
 
 			InputStream in = response.body().byteStream();
-			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in), WorldResult.class);
+			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), WorldResult.class);
 		}
 		catch (JsonParseException ex)
 		{

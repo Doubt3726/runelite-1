@@ -4,364 +4,212 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("aq")
+@ObfuscatedName("ad")
 @Implements("WorldMapData_1")
 public class WorldMapData_1 extends AbstractWorldMapData {
-	@ObfuscatedName("gx")
-	@Export("xteaKeys")
-	static int[][] xteaKeys;
-	@ObfuscatedName("r")
+	@ObfuscatedName("aw")
+	@Export("null_string")
+	protected static String null_string;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -941461191
+		intValue = 393401229
 	)
 	@Export("chunkXLow")
 	int chunkXLow;
-	@ObfuscatedName("s")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 1539271547
+		intValue = -444387603
 	)
 	@Export("chunkYLow")
 	int chunkYLow;
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1911855955
+		intValue = -2075814335
 	)
 	@Export("chunkX")
 	int chunkX;
-	@ObfuscatedName("d")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1515866059
+		intValue = -959045711
 	)
 	@Export("chunkY")
 	int chunkY;
 
 	WorldMapData_1() {
-	}
+	} // L: 11
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkn;I)V",
-		garbageValue = "-484373567"
+		descriptor = "(Lkx;I)V",
+		garbageValue = "-1959285533"
 	)
 	@Export("init")
 	void init(Buffer var1) {
-		int var2 = var1.readUnsignedByte();
-		if (var2 != WorldMapID.field299.value) {
-			throw new IllegalStateException("");
+		int var2 = var1.readUnsignedByte(); // L: 14
+		if (var2 != WorldMapID.field290.value) { // L: 15
+			throw new IllegalStateException(""); // L: 16
 		} else {
-			super.minPlane = var1.readUnsignedByte();
-			super.planes = var1.readUnsignedByte();
-			super.regionXLow = var1.readUnsignedShort();
-			super.regionYLow = var1.readUnsignedShort();
-			this.chunkXLow = var1.readUnsignedByte();
-			this.chunkYLow = var1.readUnsignedByte();
-			super.regionX = var1.readUnsignedShort();
-			super.regionY = var1.readUnsignedShort();
-			this.chunkX = var1.readUnsignedByte();
-			this.chunkY = var1.readUnsignedByte();
-			super.groupId = var1.method5843();
-			super.fileId = var1.method5843();
+			super.minPlane = var1.readUnsignedByte(); // L: 18
+			super.planes = var1.readUnsignedByte(); // L: 19
+			super.regionXLow = var1.readUnsignedShort(); // L: 20
+			super.regionYLow = var1.readUnsignedShort(); // L: 21
+			this.chunkXLow = var1.readUnsignedByte(); // L: 22
+			this.chunkYLow = var1.readUnsignedByte(); // L: 23
+			super.regionX = var1.readUnsignedShort(); // L: 24
+			super.regionY = var1.readUnsignedShort(); // L: 25
+			this.chunkX = var1.readUnsignedByte(); // L: 26
+			this.chunkY = var1.readUnsignedByte(); // L: 27
+			super.groupId = var1.method5833(); // L: 28
+			super.fileId = var1.method5833(); // L: 29
 		}
-	}
+	} // L: 30
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkn;I)V",
-		garbageValue = "-1774414997"
+		descriptor = "(Lkx;B)V",
+		garbageValue = "36"
 	)
 	@Export("readGeography")
 	void readGeography(Buffer var1) {
-		super.planes = Math.min(super.planes, 4);
-		super.floorUnderlayIds = new short[1][64][64];
-		super.floorOverlayIds = new short[super.planes][64][64];
-		super.field185 = new byte[super.planes][64][64];
-		super.field175 = new byte[super.planes][64][64];
-		super.decorations = new WorldMapDecoration[super.planes][64][64][];
-		int var2 = var1.readUnsignedByte();
-		if (var2 != class39.field293.value) {
-			throw new IllegalStateException("");
+		super.planes = Math.min(super.planes, 4); // L: 33
+		super.floorUnderlayIds = new short[1][64][64]; // L: 34
+		super.floorOverlayIds = new short[super.planes][64][64]; // L: 35
+		super.field193 = new byte[super.planes][64][64]; // L: 36
+		super.field204 = new byte[super.planes][64][64]; // L: 37
+		super.decorations = new WorldMapDecoration[super.planes][64][64][]; // L: 38
+		int var2 = var1.readUnsignedByte(); // L: 39
+		if (var2 != class39.field283.value) { // L: 40
+			throw new IllegalStateException(""); // L: 41
 		} else {
-			int var3 = var1.readUnsignedByte();
-			int var4 = var1.readUnsignedByte();
-			int var5 = var1.readUnsignedByte();
-			int var6 = var1.readUnsignedByte();
-			if (var3 == super.regionX && var4 == super.regionY && var5 == this.chunkX && var6 == this.chunkY) {
-				for (int var7 = 0; var7 < 8; ++var7) {
-					for (int var8 = 0; var8 < 8; ++var8) {
-						this.readTile(var7 + this.chunkX * 8, var8 + this.chunkY * 8, var1);
+			int var3 = var1.readUnsignedByte(); // L: 43
+			int var4 = var1.readUnsignedByte(); // L: 44
+			int var5 = var1.readUnsignedByte(); // L: 45
+			int var6 = var1.readUnsignedByte(); // L: 46
+			if (var3 == super.regionX && var4 == super.regionY && var5 == this.chunkX && var6 == this.chunkY) { // L: 47
+				for (int var7 = 0; var7 < 8; ++var7) { // L: 50
+					for (int var8 = 0; var8 < 8; ++var8) { // L: 51
+						this.readTile(var7 + this.chunkX * 8, var8 + this.chunkY * 8, var1); // L: 52
 					}
 				}
 
 			} else {
-				throw new IllegalStateException("");
+				throw new IllegalStateException(""); // L: 48
 			}
 		}
-	}
+	} // L: 55
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "4"
+		descriptor = "(I)I",
+		garbageValue = "-1716602813"
 	)
 	@Export("getChunkXLow")
 	int getChunkXLow() {
-		return this.chunkXLow;
+		return this.chunkXLow; // L: 73
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "259751183"
+		descriptor = "(B)I",
+		garbageValue = "-26"
 	)
 	@Export("getChunkYLow")
 	int getChunkYLow() {
-		return this.chunkYLow;
+		return this.chunkYLow; // L: 77
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-810164078"
+		descriptor = "(I)I",
+		garbageValue = "-477911557"
 	)
 	@Export("getChunkX")
 	int getChunkX() {
-		return this.chunkX;
+		return this.chunkX; // L: 81
 	}
 
-	@ObfuscatedName("as")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "196084572"
+		descriptor = "(I)I",
+		garbageValue = "384332395"
 	)
 	@Export("getChunkY")
 	int getChunkY() {
-		return this.chunkY;
+		return this.chunkY; // L: 85
 	}
 
 	public boolean equals(Object var1) {
-		if (!(var1 instanceof WorldMapData_1)) {
-			return false;
+		if (!(var1 instanceof WorldMapData_1)) { // L: 58
+			return false; // L: 59
 		} else {
-			WorldMapData_1 var2 = (WorldMapData_1)var1;
-			if (var2.regionX == super.regionX && var2.regionY == super.regionY) {
-				return this.chunkX == var2.chunkX && var2.chunkY == this.chunkY;
+			WorldMapData_1 var2 = (WorldMapData_1)var1; // L: 61
+			if (super.regionX == var2.regionX && super.regionY == var2.regionY) { // L: 62
+				return var2.chunkX == this.chunkX && this.chunkY == var2.chunkY; // L: 65
 			} else {
-				return false;
+				return false; // L: 63
 			}
 		}
 	}
 
 	public int hashCode() {
-		return super.regionX | super.regionY << 8 | this.chunkX << 16 | this.chunkY << 24;
+		return super.regionX | super.regionY << 8 | this.chunkX << 16 | this.chunkY << 24; // L: 69
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("jv")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1959951733"
+		descriptor = "([Lhz;IS)V",
+		garbageValue = "11595"
 	)
-	public static boolean method784(int var0) {
-		return var0 >= WorldMapDecorationType.field2775.id && var0 <= WorldMapDecorationType.field2778.id;
-	}
-
-	@ObfuscatedName("im")
-	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "87"
-	)
-	@Export("addSceneMenuOptions")
-	static final void addSceneMenuOptions(int var0, int var1, int var2, int var3) {
-		if (Client.isItemSelected == 0 && !Client.isSpellSelected) {
-			ScriptEvent.insertMenuItemNoShift("Walk here", "", 23, 0, var0 - var2, var1 - var3);
-		}
-
-		long var4 = -1L;
-		long var6 = -1L;
-
-		int var8;
-		for (var8 = 0; var8 < WorldMapSection2.getEntityCountUnderMouse(); ++var8) {
-			long entityTag_1 = WorldMapLabel.getEntityUnderMouse(var8);
-			if (entityTag_1 != var6) {
-				var6 = entityTag_1;
-				int sceneX = SoundSystem.getSceneXForObjectUnderMouse(var8);
-				long entityTag_2 = ViewportMouse.ViewportMouse_entityTags[var8];
-				int sceneY = (int)(entityTag_2 >>> 7 & 0x7fL);
-				sceneY = sceneY;
-				int interactType = class171.Entity_unpackType(ViewportMouse.ViewportMouse_entityTags[var8]);
-				int objectId = class2.getEntityIdUnderMouse(var8);
-				if (interactType == 2 && UserComparator3.scene.getObjectFlags(TileItemPile.Client_plane, sceneX, sceneY, entityTag_1) >= 0) {
-					ObjectDefinition objectDef = Canvas.getObjectDefinition(objectId);
-					if (objectDef.transforms != null) {
-						objectDef = objectDef.transform();
+	@Export("runComponentCloseListeners")
+	static final void runComponentCloseListeners(Widget[] var0, int var1) {
+		for (int var2 = 0; var2 < var0.length; ++var2) { // L: 10845
+			Widget var3 = var0[var2]; // L: 10846
+			if (var3 != null) { // L: 10847
+				if (var3.type == 0) { // L: 10848
+					if (var3.children != null) { // L: 10849
+						runComponentCloseListeners(var3.children, var1);
 					}
 
-					if (objectDef == null) {
-						continue;
-					}
-
-					if (Client.isItemSelected == 1) {
-						ScriptEvent.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + ItemContainer.colorStartTag(65535) + objectDef.name, 1, objectId, sceneX, sceneY);
-					} else if (Client.isSpellSelected) {
-						if ((WorldMapSprite.selectedSpellFlags & 4) == 4) {
-							ScriptEvent.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + ItemContainer.colorStartTag(65535) + objectDef.name, 2, objectId, sceneX, sceneY);
-						}
-					} else {
-						String[] actions = objectDef.actions;
-						if (actions != null) {
-							for (int actionIdx = 4; actionIdx >= 0; --actionIdx) {
-								if (actions[actionIdx] != null) {
-									short opcode = 0;
-									if (actionIdx == 0) {
-										opcode = 3;
-									}
-
-									if (actionIdx == 1) {
-										opcode = 4;
-									}
-
-									if (actionIdx == 2) {
-										opcode = 5;
-									}
-
-									if (actionIdx == 3) {
-										opcode = 6;
-									}
-
-									if (actionIdx == 4) {
-										opcode = 1001;
-									}
-
-									ScriptEvent.insertMenuItemNoShift(actions[actionIdx], ItemContainer.colorStartTag(65535) + objectDef.name, opcode, objectId, sceneX, sceneY);
-								}
-							}
-						}
-
-						ScriptEvent.insertMenuItemNoShift("Examine", ItemContainer.colorStartTag(65535) + objectDef.name, 1002, objectDef.id, sceneX, sceneY);
+					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id); // L: 10850
+					if (var4 != null) { // L: 10851
+						class228.runIntfCloseListeners(var4.group, var1);
 					}
 				}
 
-				int var18;
-				NPC var19;
-				Player var21;
-				int[] var33;
-				int var35;
-				if (interactType == 1) {
-					NPC var30 = Client.npcs[objectId];
-					if (var30 == null) {
-						continue;
-					}
-
-					if (var30.definition.size == 1 && (var30.x & 127) == 64 && (var30.y & 127) == 64) {
-						for (var18 = 0; var18 < Client.npcCount; ++var18) {
-							var19 = Client.npcs[Client.npcIndices[var18]];
-							if (var19 != null && var30 != var19 && var19.definition.size == 1 && var19.x == var30.x && var19.y == var30.y) {
-								ApproximateRouteStrategy.addNpcToMenu(var19.definition, Client.npcIndices[var18], sceneX, sceneY);
-							}
-						}
-
-						var18 = Players.Players_count;
-						var33 = Players.Players_indices;
-
-						for (var35 = 0; var35 < var18; ++var35) {
-							var21 = Client.players[var33[var35]];
-							if (var21 != null && var30.x == var21.x && var30.y == var21.y) {
-								Player.addPlayerToMenu(var21, var33[var35], sceneX, sceneY);
-							}
-						}
-					}
-
-					ApproximateRouteStrategy.addNpcToMenu(var30.definition, objectId, sceneX, sceneY);
+				ScriptEvent var5;
+				if (var1 == 0 && var3.onDialogAbort != null) { // L: 10853
+					var5 = new ScriptEvent(); // L: 10854
+					var5.widget = var3; // L: 10855
+					var5.args = var3.onDialogAbort; // L: 10856
+					PacketWriter.runScriptEvent(var5); // L: 10857
 				}
 
-				if (interactType == 0) {
-					Player var31 = Client.players[objectId];
-					if (var31 == null) {
-						continue;
-					}
-
-					if ((var31.x & 127) == 64 && (var31.y & 127) == 64) {
-						for (var18 = 0; var18 < Client.npcCount; ++var18) {
-							var19 = Client.npcs[Client.npcIndices[var18]];
-							if (var19 != null && var19.definition.size == 1 && var31.x == var19.x && var31.y == var19.y) {
-								ApproximateRouteStrategy.addNpcToMenu(var19.definition, Client.npcIndices[var18], sceneX, sceneY);
-							}
-						}
-
-						var18 = Players.Players_count;
-						var33 = Players.Players_indices;
-
-						for (var35 = 0; var35 < var18; ++var35) {
-							var21 = Client.players[var33[var35]];
-							if (var21 != null && var21 != var31 && var21.x == var31.x && var31.y == var21.y) {
-								Player.addPlayerToMenu(var21, var33[var35], sceneX, sceneY);
-							}
+				if (var1 == 1 && var3.onSubChange != null) { // L: 10859
+					if (var3.childIndex >= 0) { // L: 10860
+						Widget var6 = class237.getWidget(var3.id); // L: 10861
+						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) { // L: 10862
+							continue;
 						}
 					}
 
-					if (objectId != Client.combatTargetPlayerIndex) {
-						Player.addPlayerToMenu(var31, objectId, sceneX, sceneY);
-					} else {
-						var4 = entityTag_1;
-					}
-				}
-
-				if (interactType == 3) {
-					NodeDeque var32 = Client.groundItems[TileItemPile.Client_plane][sceneX][sceneY];
-					if (var32 != null) {
-						for (TileItem var36 = (TileItem)var32.first(); var36 != null; var36 = (TileItem)var32.next()) {
-							ItemDefinition var34 = KitDefinition.ItemDefinition_get(var36.id);
-							if (Client.isItemSelected == 1) {
-								ScriptEvent.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + ItemContainer.colorStartTag(16748608) + var34.name, 16, var36.id, sceneX, sceneY);
-							} else if (Client.isSpellSelected) {
-								if ((WorldMapSprite.selectedSpellFlags & 1) == 1) {
-									ScriptEvent.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + ItemContainer.colorStartTag(16748608) + var34.name, 17, var36.id, sceneX, sceneY);
-								}
-							} else {
-								String[] var28 = var34.groundActions;
-
-								for (int var29 = 4; var29 >= 0; --var29) {
-									if (var28 != null && var28[var29] != null) {
-										byte var22 = 0;
-										if (var29 == 0) {
-											var22 = 18;
-										}
-
-										if (var29 == 1) {
-											var22 = 19;
-										}
-
-										if (var29 == 2) {
-											var22 = 20;
-										}
-
-										if (var29 == 3) {
-											var22 = 21;
-										}
-
-										if (var29 == 4) {
-											var22 = 22;
-										}
-
-										ScriptEvent.insertMenuItemNoShift(var28[var29], ItemContainer.colorStartTag(16748608) + var34.name, var22, var36.id, sceneX, sceneY);
-									} else if (var29 == 2) {
-										ScriptEvent.insertMenuItemNoShift("Take", ItemContainer.colorStartTag(16748608) + var34.name, 20, var36.id, sceneX, sceneY);
-									}
-								}
-
-								ScriptEvent.insertMenuItemNoShift("Examine", ItemContainer.colorStartTag(16748608) + var34.name, 1004, var36.id, sceneX, sceneY);
-							}
-						}
-					}
+					var5 = new ScriptEvent(); // L: 10866
+					var5.widget = var3; // L: 10867
+					var5.args = var3.onSubChange; // L: 10868
+					PacketWriter.runScriptEvent(var5); // L: 10869
 				}
 			}
 		}
 
-		if (-1L != var4) {
-			var8 = class279.Entity_unpackSceneX(var4);
-			int pSceneY = (int)(var4 >>> 7 & 127L);
-			Player var11 = Client.players[Client.combatTargetPlayerIndex];
-			Player.addPlayerToMenu(var11, Client.combatTargetPlayerIndex, var8, pSceneY);
-		}
+	} // L: 10872
 
-	}
+	@ObfuscatedName("jr")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "1"
+	)
+	static final void method810(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 127); // L: 11118
+		WorldMapSectionType.clientPreferences.areaSoundEffectsVolume = var0; // L: 11119
+		class23.savePreferences(); // L: 11120
+	} // L: 11121
 }

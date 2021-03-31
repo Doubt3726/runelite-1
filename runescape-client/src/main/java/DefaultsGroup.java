@@ -4,26 +4,32 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lm")
+@ObfuscatedName("lw")
 @Implements("DefaultsGroup")
 public class DefaultsGroup {
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Llm;"
+		descriptor = "Llw;"
 	)
-	static final DefaultsGroup field3822;
-	@ObfuscatedName("o")
+	static final DefaultsGroup field3837;
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		descriptor = "[[Lhz;"
+	)
+	@Export("Widget_interfaceComponents")
+	public static Widget[][] Widget_interfaceComponents;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1462614597
+		intValue = -1717211989
 	)
 	@Export("group")
 	final int group;
 
 	static {
-		field3822 = new DefaultsGroup(3);
+		field3837 = new DefaultsGroup(3); // L: 4
 	}
 
 	DefaultsGroup(int var1) {
-		this.group = var1;
-	}
+		this.group = var1; // L: 8
+	} // L: 9
 }

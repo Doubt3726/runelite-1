@@ -1,223 +1,203 @@
 import java.util.concurrent.Callable;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bm")
+@ObfuscatedName("bg")
 @Implements("SecureRandomCallable")
 public class SecureRandomCallable implements Callable {
-	@ObfuscatedName("z")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "Lic;"
+		descriptor = "Lip;"
 	)
-	@Export("Widget_modelsArchive")
-	static AbstractArchive Widget_modelsArchive;
-	@ObfuscatedName("c")
+	@Export("NetCache_currentResponse")
+	public static NetFileRequest NetCache_currentResponse;
+	@ObfuscatedName("fp")
 	@ObfuscatedSignature(
-		signature = "Lhd;"
+		descriptor = "Lkl;"
 	)
-	static Widget field544;
-	@ObfuscatedName("cp")
-	@ObfuscatedGetter(
-		intValue = -1382936715
-	)
-	public static int field546;
-	@ObfuscatedName("ll")
-	@ObfuscatedSignature(
-		signature = "Lhd;"
-	)
-	static Widget field542;
+	@Export("fontPlain11")
+	static Font fontPlain11;
 
 	SecureRandomCallable() {
-	}
+	} // L: 36
 
 	public Object call() {
-		return WorldMapIcon_1.method348();
+		return class39.method643(); // L: 45
 	}
 
-	@ObfuscatedName("ab")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(ILcs;ZI)I",
-		garbageValue = "1445802198"
+		descriptor = "(III)I",
+		garbageValue = "-1343548281"
 	)
-	static int method1203(int var0, Script var1, boolean var2) {
-		int var3;
-		int var4;
-		if (var0 == ScriptOpcodes.ADD) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var4 + var3;
-			return 1;
-		} else if (var0 == ScriptOpcodes.SUB) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3 - var4;
-			return 1;
-		} else if (var0 == ScriptOpcodes.MULTIPLY) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3 * var4;
-			return 1;
-		} else if (var0 == ScriptOpcodes.DIV) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3 / var4;
-			return 1;
-		} else if (var0 == ScriptOpcodes.RANDOM) {
-			var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = (int)(Math.random() * (double)var3);
-			return 1;
-		} else if (var0 == ScriptOpcodes.RANDOMINC) {
-			var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = (int)(Math.random() * (double)(var3 + 1));
-			return 1;
-		} else if (var0 == ScriptOpcodes.INTERPOLATE) {
-			UrlRequester.Interpreter_intStackSize -= 5;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			int var5 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 2];
-			int var6 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 3];
-			int var7 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 4];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3 + (var7 - var5) * (var4 - var3) / (var6 - var5);
-			return 1;
-		} else if (var0 == ScriptOpcodes.ADDPERCENT) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3 + var3 * var4 / 100;
-			return 1;
-		} else if (var0 == ScriptOpcodes.SETBIT) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3 | 1 << var4;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CLEARBIT) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3 & -1 - (1 << var4);
-			return 1;
-		} else if (var0 == ScriptOpcodes.TESTBIT) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = (var3 & 1 << var4) != 0 ? 1 : 0;
-			return 1;
-		} else if (var0 == ScriptOpcodes.MOD) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3 % var4;
-			return 1;
-		} else if (var0 == ScriptOpcodes.POW) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			if (var3 == 0) {
-				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
-			} else {
-				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = (int)Math.pow((double)var3, (double)var4);
+	static final int method1226(int var0, int var1) {
+		if (var0 == -2) { // L: 573
+			return 12345678;
+		} else if (var0 == -1) { // L: 574
+			if (var1 < 2) { // L: 575
+				var1 = 2;
+			} else if (var1 > 126) { // L: 576
+				var1 = 126;
 			}
 
-			return 1;
-		} else if (var0 == ScriptOpcodes.INVPOW) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			if (var3 == 0) {
-				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
-				return 1;
-			} else {
-				switch(var4) {
-				case 0:
-					Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = Integer.MAX_VALUE;
-					break;
-				case 1:
-					Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3;
-					break;
-				case 2:
-					Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = (int)Math.sqrt((double)var3);
-					break;
-				case 3:
-					Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = (int)Math.cbrt((double)var3);
-					break;
-				case 4:
-					Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = (int)Math.sqrt(Math.sqrt((double)var3));
-					break;
-				default:
-					Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = (int)Math.pow((double)var3, 1.0D / (double)var4);
+			return var1; // L: 577
+		} else {
+			var1 = (var0 & 127) * var1 / 128; // L: 579
+			if (var1 < 2) { // L: 580
+				var1 = 2;
+			} else if (var1 > 126) { // L: 581
+				var1 = 126;
+			}
+
+			return (var0 & 65408) + var1; // L: 582
+		}
+	}
+
+	@ObfuscatedName("fq")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-33"
+	)
+	@Export("logOut")
+	static final void logOut() {
+		Client.packetWriter.close(); // L: 2525
+		class228.method4311(); // L: 2527
+		FloorUnderlayDefinition.FloorUnderlayDefinition_cached.clear(); // L: 2529
+		KitDefinition.KitDefinition_cached.clear(); // L: 2532
+		ObjectComposition.ObjectDefinition_cached.clear(); // L: 2535
+		ObjectComposition.ObjectDefinition_cachedModelData.clear(); // L: 2536
+		ObjectComposition.ObjectDefinition_cachedEntities.clear(); // L: 2537
+		ObjectComposition.ObjectDefinition_cachedModels.clear(); // L: 2538
+		NPCComposition.NpcDefinition_cached.clear(); // L: 2541
+		NPCComposition.NpcDefinition_cachedModels.clear(); // L: 2542
+		ItemComposition.ItemDefinition_cached.clear(); // L: 2545
+		ItemComposition.ItemDefinition_cachedModels.clear(); // L: 2546
+		ItemComposition.ItemDefinition_cachedSprites.clear(); // L: 2547
+		SequenceDefinition.SequenceDefinition_cached.clear(); // L: 2550
+		SequenceDefinition.SequenceDefinition_cachedFrames.clear(); // L: 2551
+		WorldMapEvent.method851(); // L: 2553
+		VarbitComposition.VarbitDefinition_cached.clear(); // L: 2555
+		World.method1924(); // L: 2557
+		KeyHandler.method913(); // L: 2558
+		Tile.method3032(); // L: 2559
+		StructComposition.StructDefinition_cached.clear(); // L: 2561
+		ParamComposition.ParamDefinition_cached.clear(); // L: 2564
+		ItemLayer.method2938(); // L: 2566
+		PlayerComposition.PlayerAppearance_cachedModels.clear(); // L: 2568
+		WorldMapEvent.method850(); // L: 2570
+		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).clear(); // L: 2571
+		Script.Script_cached.clear(); // L: 2572
+		class52.archive0.clearFiles(); // L: 2573
+		SpriteMask.archive1.clearFiles(); // L: 2574
+		PlayerComposition.archive3.clearFiles(); // L: 2575
+		WorldMapCacheName.archive4.clearFiles(); // L: 2576
+		class8.archive5.clearFiles(); // L: 2577
+		UrlRequester.archive6.clearFiles(); // L: 2578
+		WorldMapData_0.archive7.clearFiles(); // L: 2579
+		ModeWhere.archive8.clearFiles(); // L: 2580
+		ViewportMouse.archive9.clearFiles(); // L: 2581
+		LoginScreenAnimation.archive10.clearFiles(); // L: 2582
+		WorldMapManager.archive11.clearFiles(); // L: 2583
+		WorldMapSection0.archive12.clearFiles(); // L: 2584
+		MilliClock.scene.clear(); // L: 2586
+
+		for (int var0 = 0; var0 < 4; ++var0) { // L: 2587
+			Client.collisionMaps[var0].clear();
+		}
+
+		System.gc(); // L: 2588
+		class206.musicPlayerStatus = 1; // L: 2590
+		class206.musicTrackArchive = null; // L: 2591
+		class206.musicTrackGroupId = -1; // L: 2592
+		SoundSystem.musicTrackFileId = -1; // L: 2593
+		DevicePcmPlayerProvider.musicTrackVolume = 0; // L: 2594
+		class206.musicTrackBoolean = false; // L: 2595
+		class7.pcmSampleLength = 2; // L: 2596
+		Client.currentTrackGroupId = -1; // L: 2598
+		Client.field899 = false; // L: 2599
+
+		for (ObjectSound var1 = (ObjectSound)ObjectSound.objectSounds.last(); var1 != null; var1 = (ObjectSound)ObjectSound.objectSounds.previous()) { // L: 2601
+			if (var1.stream1 != null) { // L: 2602
+				VarbitComposition.pcmStreamMixer.removeSubStream(var1.stream1); // L: 2603
+				var1.stream1 = null; // L: 2604
+			}
+
+			if (var1.stream2 != null) { // L: 2606
+				VarbitComposition.pcmStreamMixer.removeSubStream(var1.stream2); // L: 2607
+				var1.stream2 = null; // L: 2608
+			}
+		}
+
+		ObjectSound.objectSounds.clear(); // L: 2611
+		ItemContainer.updateGameState(10); // L: 2613
+	} // L: 2614
+
+	@ObfuscatedName("fl")
+	@ObfuscatedSignature(
+		descriptor = "(Lhz;III)V",
+		garbageValue = "860211947"
+	)
+	@Export("checkIfMinimapClicked")
+	static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
+		if (Client.minimapState == 0 || Client.minimapState == 3) { // L: 3409
+			if (!Client.isMenuOpen && (MouseHandler.MouseHandler_lastButton == 1 || !class8.mouseCam && MouseHandler.MouseHandler_lastButton == 4)) { // L: 3410
+				SpriteMask var3 = var0.getSpriteMask(true); // L: 3411
+				if (var3 == null) { // L: 3412
+					return;
 				}
 
-				return 1;
+				int var4 = MouseHandler.MouseHandler_lastPressedX - var1; // L: 3413
+				int var5 = MouseHandler.MouseHandler_lastPressedY - var2; // L: 3414
+				if (var3.contains(var4, var5)) { // L: 3415
+					var4 -= var3.width / 2; // L: 3416
+					var5 -= var3.height / 2; // L: 3417
+					int var6 = Client.camAngleY & 2047; // L: 3418
+					int var7 = Rasterizer3D.Rasterizer3D_sine[var6]; // L: 3419
+					int var8 = Rasterizer3D.Rasterizer3D_cosine[var6]; // L: 3420
+					int var9 = var4 * var8 + var5 * var7 >> 11; // L: 3421
+					int var10 = var5 * var8 - var7 * var4 >> 11; // L: 3422
+					int var11 = var9 + UserComparator9.localPlayer.x >> 7; // L: 3423
+					int var12 = UserComparator9.localPlayer.y - var10 >> 7; // L: 3424
+					PacketBufferNode var13 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2260, Client.packetWriter.isaacCipher); // L: 3426
+					var13.packetBuffer.writeByte(18); // L: 3427
+					var13.packetBuffer.method5778(KeyHandler.KeyHandler_pressedKeys[82] ? (KeyHandler.KeyHandler_pressedKeys[81] ? 2 : 1) : 0); // L: 3428
+					var13.packetBuffer.writeIntME(var12 + NetCache.baseY); // L: 3429
+					var13.packetBuffer.writeShort(var11 + GrandExchangeOfferNameComparator.baseX); // L: 3430
+					var13.packetBuffer.writeByte(var4); // L: 3431
+					var13.packetBuffer.writeByte(var5); // L: 3432
+					var13.packetBuffer.writeShort(Client.camAngleY); // L: 3433
+					var13.packetBuffer.writeByte(57); // L: 3434
+					var13.packetBuffer.writeByte(0); // L: 3435
+					var13.packetBuffer.writeByte(0); // L: 3436
+					var13.packetBuffer.writeByte(89); // L: 3437
+					var13.packetBuffer.writeShort(UserComparator9.localPlayer.x); // L: 3438
+					var13.packetBuffer.writeShort(UserComparator9.localPlayer.y); // L: 3439
+					var13.packetBuffer.writeByte(63); // L: 3440
+					Client.packetWriter.addNode(var13); // L: 3441
+					Client.destinationX = var11; // L: 3442
+					Client.destinationY = var12; // L: 3443
+				}
 			}
-		} else if (var0 == ScriptOpcodes.AND) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3 & var4;
-			return 1;
-		} else if (var0 == ScriptOpcodes.OR) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3 | var4;
-			return 1;
-		} else if (var0 == ScriptOpcodes.SCALE) {
-			UrlRequester.Interpreter_intStackSize -= 3;
-			long var9 = (long)Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			long var11 = (long)Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			long var13 = (long)Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 2];
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = (int)(var13 * var9 / var11);
-			return 1;
-		} else {
-			return 2;
+
 		}
-	}
+	} // L: 3446
 
-	@ObfuscatedName("fm")
+	@ObfuscatedName("ge")
 	@ObfuscatedSignature(
-		signature = "(Lby;IIB)V",
-		garbageValue = "72"
+		descriptor = "(III)I",
+		garbageValue = "-358852627"
 	)
-	@Export("performPlayerAnimation")
-	static void performPlayerAnimation(Player var0, int var1, int var2) {
-		if (var0.sequence == var1 && var1 != -1) {
-			int var3 = NetSocket.SequenceDefinition_get(var1).field3561;
-			if (var3 == 1) {
-				var0.sequenceFrame = 0;
-				var0.sequenceFrameCycle = 0;
-				var0.sequenceDelay = var2;
-				var0.field1000 = 0;
-			}
-
-			if (var3 == 2) {
-				var0.field1000 = 0;
-			}
-		} else if (var1 == -1 || var0.sequence == -1 || NetSocket.SequenceDefinition_get(var1).field3543 >= NetSocket.SequenceDefinition_get(var0.sequence).field3543) {
-			var0.sequence = var1;
-			var0.sequenceFrame = 0;
-			var0.sequenceFrameCycle = 0;
-			var0.sequenceDelay = var2;
-			var0.field1000 = 0;
-			var0.field1023 = var0.pathLength;
+	static int method1233(int var0, int var1) {
+		int var2 = var1 - 334; // L: 4926
+		if (var2 < 0) { // L: 4927
+			var2 = 0;
+		} else if (var2 > 100) { // L: 4928
+			var2 = 100;
 		}
 
-	}
-
-	@ObfuscatedName("hw")
-	@ObfuscatedSignature(
-		signature = "(Lcu;III)V",
-		garbageValue = "9999999"
-	)
-	static final void method1205(MenuAction var0, int var1, int var2) {
-		WorldMapSection0.menuAction(var0.param0, var0.param1, var0.opcode, var0.identifier, var0.action, var0.action, var1, var2);
+		int var3 = (Client.zoomWidth - Client.zoomHeight) * var2 / 100 + Client.zoomHeight; // L: 4929
+		return var0 * var3 / 256; // L: 4930
 	}
 }

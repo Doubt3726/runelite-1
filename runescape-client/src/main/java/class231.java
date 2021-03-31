@@ -1,85 +1,66 @@
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("hb")
+@ObfuscatedName("hy")
 public class class231 {
-	@ObfuscatedName("as")
-	@ObfuscatedSignature(
-		signature = "(ILcs;ZI)I",
-		garbageValue = "340792557"
-	)
-	static int method4277(int var0, Script var1, boolean var2) {
-		if (var0 == ScriptOpcodes.GETWINDOWMODE) {
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = class58.getWindowedMode();
-			return 1;
-		} else {
-			int var3;
-			if (var0 == ScriptOpcodes.SETWINDOWMODE) {
-				var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-				if (var3 == 1 || var3 == 2) {
-					ScriptEvent.setWindowedMode(var3);
-				}
-
-				return 1;
-			} else if (var0 == ScriptOpcodes.GETDEFAULTWINDOWMODE) {
-				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = NetSocket.clientPreferences.windowMode;
-				return 1;
-			} else if (var0 != ScriptOpcodes.SETDEFAULTWINDOWMODE) {
-				if (var0 == 5310) {
-					--UrlRequester.Interpreter_intStackSize;
-					return 1;
-				} else {
-					return 2;
-				}
+	@ObfuscatedName("n")
+	public static final int method4321(double var0, double var2, double var4) {
+		double var6 = var4; // L: 9
+		double var8 = var4; // L: 10
+		double var10 = var4; // L: 11
+		if (var2 != 0.0D) { // L: 12
+			double var12;
+			if (var4 < 0.5D) { // L: 14
+				var12 = (var2 + 1.0D) * var4;
 			} else {
-				var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-				if (var3 == 1 || var3 == 2) {
-					NetSocket.clientPreferences.windowMode = var3;
-					SpriteMask.savePreferences();
-				}
+				var12 = var4 + var2 - var2 * var4; // L: 15
+			}
 
-				return 1;
+			double var14 = 2.0D * var4 - var12; // L: 16
+			double var16 = 0.3333333333333333D + var0; // L: 17
+			if (var16 > 1.0D) { // L: 18
+				--var16;
+			}
+
+			double var20 = var0 - 0.3333333333333333D; // L: 20
+			if (var20 < 0.0D) { // L: 21
+				++var20;
+			}
+
+			if (var16 * 6.0D < 1.0D) { // L: 22
+				var6 = var16 * 6.0D * (var12 - var14) + var14;
+			} else if (var16 * 2.0D < 1.0D) { // L: 23
+				var6 = var12;
+			} else if (3.0D * var16 < 2.0D) { // L: 24
+				var6 = var14 + 6.0D * (var12 - var14) * (0.6666666666666666D - var16);
+			} else {
+				var6 = var14; // L: 25
+			}
+
+			if (6.0D * var0 < 1.0D) { // L: 26
+				var8 = 6.0D * (var12 - var14) * var0 + var14;
+			} else if (var0 * 2.0D < 1.0D) { // L: 27
+				var8 = var12;
+			} else if (var0 * 3.0D < 2.0D) {
+				var8 = var14 + 6.0D * (var12 - var14) * (0.6666666666666666D - var0); // L: 28
+			} else {
+				var8 = var14; // L: 29
+			}
+
+			if (6.0D * var20 < 1.0D) { // L: 30
+				var10 = var14 + var20 * 6.0D * (var12 - var14);
+			} else if (2.0D * var20 < 1.0D) { // L: 31
+				var10 = var12;
+			} else if (var20 * 3.0D < 2.0D) { // L: 32
+				var10 = var14 + (0.6666666666666666D - var20) * (var12 - var14) * 6.0D;
+			} else {
+				var10 = var14; // L: 33
 			}
 		}
-	}
 
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		signature = "(ILcs;ZI)I",
-		garbageValue = "1553809797"
-	)
-	static int method4278(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == ScriptOpcodes.CAM_FORCEANGLE) {
-			UrlRequester.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-			int var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-			if (!Client.isCameraLocked) {
-				Client.camAngleX = var3;
-				Client.camAngleY = var4;
-			}
-
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_XA) {
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = Client.camAngleX;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_YA) {
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = Client.camAngleY;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_SETFOLLOWHEIGHT) {
-			var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-			if (var3 < 0) {
-				var3 = 0;
-			}
-
-			Client.camFollowHeight = var3;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETFOLLOWHEIGHT) {
-			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = Client.camFollowHeight;
-			return 1;
-		} else {
-			return 2;
-		}
+		int var22 = (int)(256.0D * var6); // L: 35
+		int var13 = (int)(256.0D * var8); // L: 36
+		int var23 = (int)(256.0D * var10); // L: 37
+		int var15 = var23 + (var13 << 8) + (var22 << 16); // L: 38
+		return var15; // L: 39
 	}
 }

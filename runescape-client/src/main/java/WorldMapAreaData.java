@@ -6,13 +6,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("az")
+@ObfuscatedName("au")
 @Implements("WorldMapAreaData")
 public class WorldMapAreaData extends WorldMapArea {
-	@ObfuscatedName("c")
+	@ObfuscatedName("nz")
+	@ObfuscatedSignature(
+		descriptor = "[Lhz;"
+	)
+	static Widget[] field362;
+	@ObfuscatedName("a")
 	@Export("worldMapData0Set")
 	HashSet worldMapData0Set;
-	@ObfuscatedName("h")
+	@ObfuscatedName("w")
 	@Export("worldMapData1Set")
 	HashSet worldMapData1Set;
 	@ObfuscatedName("k")
@@ -20,190 +25,118 @@ public class WorldMapAreaData extends WorldMapArea {
 	List iconList;
 
 	WorldMapAreaData() {
-	}
+	} // L: 14
 
-	@ObfuscatedName("bs")
+	@ObfuscatedName("cn")
 	@ObfuscatedSignature(
-		signature = "(Lkn;Lkn;IZI)V",
-		garbageValue = "442767924"
+		descriptor = "(Lkx;Lkx;IZI)V",
+		garbageValue = "1841942277"
 	)
 	@Export("init")
 	void init(Buffer var1, Buffer var2, int var3, boolean var4) {
-		this.read(var1, var3);
-		int var5 = var2.readUnsignedShort();
-		this.worldMapData0Set = new HashSet(var5);
+		this.read(var1, var3); // L: 17
+		int var5 = var2.readUnsignedShort(); // L: 18
+		this.worldMapData0Set = new HashSet(var5); // L: 19
 
 		int var6;
-		for (var6 = 0; var6 < var5; ++var6) {
-			WorldMapData_0 var7 = new WorldMapData_0();
+		for (var6 = 0; var6 < var5; ++var6) { // L: 20
+			WorldMapData_0 var7 = new WorldMapData_0(); // L: 21
 
 			try {
-				var7.init(var2);
-			} catch (IllegalStateException var12) {
-				continue;
+				var7.init(var2); // L: 23
+			} catch (IllegalStateException var12) { // L: 25
+				continue; // L: 26
 			}
 
-			this.worldMapData0Set.add(var7);
+			this.worldMapData0Set.add(var7); // L: 28
 		}
 
-		var6 = var2.readUnsignedShort();
-		this.worldMapData1Set = new HashSet(var6);
+		var6 = var2.readUnsignedShort(); // L: 30
+		this.worldMapData1Set = new HashSet(var6); // L: 31
 
-		for (int var10 = 0; var10 < var6; ++var10) {
-			WorldMapData_1 var8 = new WorldMapData_1();
+		for (int var10 = 0; var10 < var6; ++var10) { // L: 32
+			WorldMapData_1 var8 = new WorldMapData_1(); // L: 33
 
 			try {
-				var8.init(var2);
-			} catch (IllegalStateException var11) {
-				continue;
+				var8.init(var2); // L: 35
+			} catch (IllegalStateException var11) { // L: 37
+				continue; // L: 38
 			}
 
-			this.worldMapData1Set.add(var8);
+			this.worldMapData1Set.add(var8); // L: 40
 		}
 
-		this.initIconsList(var2, var4);
-	}
+		this.initIconsList(var2, var4); // L: 42
+	} // L: 43
 
-	@ObfuscatedName("by")
+	@ObfuscatedName("cj")
 	@ObfuscatedSignature(
-		signature = "(Lkn;ZI)V",
-		garbageValue = "-380421071"
+		descriptor = "(Lkx;ZI)V",
+		garbageValue = "-1098628565"
 	)
 	@Export("initIconsList")
 	void initIconsList(Buffer var1, boolean var2) {
-		this.iconList = new LinkedList();
-		int var3 = var1.readUnsignedShort();
+		this.iconList = new LinkedList(); // L: 46
+		int var3 = var1.readUnsignedShort(); // L: 47
 
-		for (int var4 = 0; var4 < var3; ++var4) {
-			int var5 = var1.method5843();
-			Coord var6 = new Coord(var1.readInt());
-			boolean var7 = var1.readUnsignedByte() == 1;
-			if (var2 || !var7) {
-				this.iconList.add(new WorldMapIcon_0((Coord)null, var6, var5, (WorldMapLabel)null));
+		for (int var4 = 0; var4 < var3; ++var4) { // L: 48
+			int var5 = var1.method5833(); // L: 49
+			Coord var6 = new Coord(var1.readInt()); // L: 50
+			boolean var7 = var1.readUnsignedByte() == 1; // L: 51
+			if (var2 || !var7) { // L: 52
+				this.iconList.add(new WorldMapIcon_0((Coord)null, var6, var5, (WorldMapLabel)null)); // L: 53
 			}
 		}
 
-	}
+	} // L: 56
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "([BI)Lcs;",
-		garbageValue = "1792640289"
+		descriptor = "(II)Ljg;",
+		garbageValue = "1068014822"
 	)
-	@Export("newScript")
-	static Script newScript(byte[] var0) {
-		Script var1 = new Script();
-		Buffer var2 = new Buffer(var0);
-		var2.offset = var2.array.length - 2;
-		int var3 = var2.readUnsignedShort();
-		int var4 = var2.array.length - 2 - var3 - 12;
-		var2.offset = var4;
-		int var5 = var2.readInt();
-		var1.localIntCount = var2.readUnsignedShort();
-		var1.localStringCount = var2.readUnsignedShort();
-		var1.intArgumentCount = var2.readUnsignedShort();
-		var1.stringArgumentCount = var2.readUnsignedShort();
-		int var6 = var2.readUnsignedByte();
-		int var7;
-		int var8;
-		if (var6 > 0) {
-			var1.switches = var1.newIterableNodeHashTable(var6);
-
-			for (var7 = 0; var7 < var6; ++var7) {
-				var8 = var2.readUnsignedShort();
-				int var9;
-				int var11;
-				if (var8 > 0) {
-					var11 = var8 - 1;
-					var11 |= var11 >>> 1;
-					var11 |= var11 >>> 2;
-					var11 |= var11 >>> 4;
-					var11 |= var11 >>> 8;
-					var11 |= var11 >>> 16;
-					int var10 = var11 + 1;
-					var9 = var10;
-				} else {
-					var9 = 1;
-				}
-
-				IterableNodeHashTable var13 = new IterableNodeHashTable(var9);
-				var1.switches[var7] = var13;
-
-				while (var8-- > 0) {
-					var11 = var2.readInt();
-					int var12 = var2.readInt();
-					var13.put(new IntegerNode(var12), (long)var11);
-				}
-			}
-		}
-
-		var2.offset = 0;
-		var2.readStringCp1252NullTerminatedOrNull();
-		var1.opcodes = new int[var5];
-		var1.intOperands = new int[var5];
-		var1.stringOperands = new String[var5];
-
-		for (var7 = 0; var2.offset < var4; var1.opcodes[var7++] = var8) {
-			var8 = var2.readUnsignedShort();
-			if (var8 == 3) {
-				var1.stringOperands[var7] = var2.readStringCp1252NullTerminated();
-			} else if (var8 < 100 && var8 != 21 && var8 != 38 && var8 != 39) {
-				var1.intOperands[var7] = var2.readInt();
-			} else {
-				var1.intOperands[var7] = var2.readUnsignedByte();
-			}
-		}
-
-		return var1;
-	}
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;B)I",
-		garbageValue = "47"
-	)
-	public static int method759(CharSequence var0) {
-		int var1 = var0.length();
-		int var2 = 0;
-
-		for (int var3 = 0; var3 < var1; ++var3) {
-			var2 = (var2 << 5) - var2 + var0.charAt(var3);
-		}
-
-		return var2;
-	}
-
-	@ObfuscatedName("ic")
-	@ObfuscatedSignature(
-		signature = "(II)Ljava/lang/String;",
-		garbageValue = "803969817"
-	)
-	@Export("formatItemStacks")
-	static final String formatItemStacks(int var0) {
-		String var1 = Integer.toString(var0);
-
-		for (int var2 = var1.length() - 3; var2 > 0; var2 -= 3) {
-			var1 = var1.substring(0, var2) + "," + var1.substring(var2);
-		}
-
-		if (var1.length() > 9) {
-			return " " + ItemContainer.colorStartTag(65408) + var1.substring(0, var1.length() - 8) + "M" + " " + " (" + var1 + ")" + "</col>";
+	@Export("getObjectDefinition")
+	public static ObjectComposition getObjectDefinition(int var0) {
+		ObjectComposition var1 = (ObjectComposition)ObjectComposition.ObjectDefinition_cached.get((long)var0); // L: 79
+		if (var1 != null) { // L: 80
+			return var1;
 		} else {
-			return var1.length() > 6 ? " " + ItemContainer.colorStartTag(16777215) + var1.substring(0, var1.length() - 4) + "K" + " " + " (" + var1 + ")" + "</col>" : " " + ItemContainer.colorStartTag(16776960) + var1 + "</col>";
+			byte[] var2 = ObjectComposition.ObjectDefinition_archive.takeFile(6, var0); // L: 81
+			var1 = new ObjectComposition(); // L: 82
+			var1.id = var0; // L: 83
+			if (var2 != null) { // L: 84
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode(); // L: 85
+			if (var1.isSolid) { // L: 86
+				var1.interactType = 0; // L: 87
+				var1.boolean1 = false; // L: 88
+			}
+
+			ObjectComposition.ObjectDefinition_cached.put(var1, (long)var0); // L: 90
+			return var1; // L: 91
 		}
 	}
 
-	@ObfuscatedName("kk")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lhd;B)Ljava/lang/String;",
-		garbageValue = "-51"
+		descriptor = "(B)V",
+		garbageValue = "-91"
 	)
-	@Export("Widget_getSpellActionName")
-	static String Widget_getSpellActionName(Widget var0) {
-		if (WorldMapID.Widget_unpackTargetMask(KeyHandler.getWidgetFlags(var0)) == 0) {
-			return null;
-		} else {
-			return var0.spellActionName != null && var0.spellActionName.trim().length() != 0 ? var0.spellActionName : null;
+	public static void method782() {
+		if (class297.NetCache_socket != null) { // L: 102
+			class297.NetCache_socket.close();
 		}
-	}
+
+	} // L: 103
+
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "1"
+	)
+	static final void method781() {
+		class300.method5473("Your ignore list is full. Max of 100 for free users, and 400 for members"); // L: 154
+	} // L: 155
 }

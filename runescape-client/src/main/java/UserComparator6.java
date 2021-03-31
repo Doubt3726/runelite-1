@@ -3,68 +3,37 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fo")
+@ObfuscatedName("fk")
 @Implements("UserComparator6")
 public class UserComparator6 extends AbstractUserComparator {
-	@ObfuscatedName("u")
-	@Export("Widget_loadedInterfaces")
-	static boolean[] Widget_loadedInterfaces;
-	@ObfuscatedName("gp")
+	@ObfuscatedName("fw")
 	@ObfuscatedSignature(
-		signature = "[Llh;"
+		descriptor = "Lls;"
 	)
-	@Export("mapSceneSprites")
-	static IndexedSprite[] mapSceneSprites;
-	@ObfuscatedName("m")
+	static AbstractSocket field2008;
+	@ObfuscatedName("n")
 	@Export("reversed")
 	final boolean reversed;
 
 	public UserComparator6(boolean var1) {
-		this.reversed = var1;
-	}
+		this.reversed = var1; // L: 10
+	} // L: 11
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkx;Lkx;S)I",
-		garbageValue = "2600"
+		descriptor = "(Lky;Lky;I)I",
+		garbageValue = "-441882539"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
-		if (var1.world != 0 && var2.world != 0) {
-			return this.reversed ? var1.getUsername().compareToTyped(var2.getUsername()) : var2.getUsername().compareToTyped(var1.getUsername());
+		if (var1.world != 0 && var2.world != 0) { // L: 14
+			return this.reversed ? var1.getUsername().compareToTyped(var2.getUsername()) : var2.getUsername().compareToTyped(var1.getUsername()); // L: 15
 		} else {
-			return this.compareUser(var1, var2);
+			return this.compareUser(var1, var2); // L: 17
 		}
 	}
 
 	public int compare(Object var1, Object var2) {
-		return this.compareBuddy((Buddy)var1, (Buddy)var2);
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(IIB)I",
-		garbageValue = "-59"
-	)
-	@Export("ItemContainer_getCount")
-	static int ItemContainer_getCount(int var0, int var1) {
-		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var2 == null) {
-			return 0;
-		} else {
-			return var1 >= 0 && var1 < var2.quantities.length ? var2.quantities[var1] : 0;
-		}
-	}
-
-	@ObfuscatedName("gf")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "0"
-	)
-	static void method3564() {
-		if (Client.renderSelf) {
-			class9.addPlayerToScene(class60.localPlayer, false);
-		}
-
+		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 21
 	}
 }

@@ -35,21 +35,23 @@ dependencies {
     deobjars(group = "net.runelite.rs", name = "vanilla", version = ProjectVersions.rsversion.toString())
     deobjars(project(":runescape-client"))
 
-    implementation(group = "org.jetbrains", name = "annotations", version = "19.0.0")
-    implementation(group = "org.ow2.asm", name = "asm", version = "8.0.1")
-    implementation(group = "org.ow2.asm", name = "asm-util", version = "8.0.1")
-    implementation(group = "net.runelite", name = "fernflower", version = "07082019")
-    implementation(group = "com.google.code.gson", name = "gson", version = "2.8.6")
-    implementation(group = "com.google.guava", name = "guava", version = "29.0-jre")
-    implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.30")
+    annotationProcessor(group = "org.projectlombok", name = "lombok", version = "1.18.4")
+
     implementation(project(":runelite-api"))
     implementation(project(":runescape-api"))
+    implementation(group = "org.jetbrains", name = "annotations", version = "20.1.0")
+    implementation(group = "org.ow2.asm", name = "asm", version = "9.0")
+    implementation(group = "org.ow2.asm", name = "asm-util", version = "9.0")
+    implementation(group = "net.runelite", name = "fernflower", version = "07082019")
+    implementation(group = "com.google.code.gson", name = "gson", version = "2.8.6")
+    implementation(group = "com.google.guava", name = "guava", version = "23.2-jre")
+    implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.12")
 
-    runtimeOnly(group = "org.slf4j", name = "slf4j-simple", version = "1.7.30")
+    runtimeOnly(group = "org.slf4j", name = "slf4j-simple", version = "1.7.12")
 
     testImplementation(deobjars)
-    testImplementation(group = "junit", name = "junit", version = "4.13")
-    testImplementation(group = "org.mockito", name = "mockito-core", version = "3.4.6")
+    testImplementation(group = "junit", name = "junit", version = "4.12")
+    testImplementation(group = "org.mockito", name = "mockito-core", version = "3.1.0")
 }
 
 tasks {
@@ -90,22 +92,23 @@ tasks {
         filter(ReplaceTokens::class, "tokens" to tokens)
         filteringCharset = "UTF-8"
     }
-
-    register<JavaExec>("Downloader.main()") {
+    // TODO: Enable assertions on all 3
+    register<JavaExec>("Downloader\$main()") {
         group = "gamepack"
 
         classpath = project.sourceSets.main.get().runtimeClasspath
         main = "net.runelite.gamepack.Downloader"
     }
 
-    register<JavaExec>("Deob.main()") {
+    register<JavaExec>("Deob\$main()") {
         group = "gamepack"
 
         classpath = project.sourceSets.main.get().runtimeClasspath
         main = "net.runelite.deob.Deob"
+        args = listOf(tokens["vanilla.jar"], "$buildDir/libs/deobfuscated-$version.jar")
     }
 
-    register<JavaExec>("UpdateMappings.main()") {
+    register<JavaExec>("UpdateMappings\$main()") {
         group = "gamepack"
 
         classpath = project.sourceSets.main.get().runtimeClasspath

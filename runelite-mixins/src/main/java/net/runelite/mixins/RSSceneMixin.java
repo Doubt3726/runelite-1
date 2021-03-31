@@ -24,11 +24,11 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.Entity;
+import net.runelite.api.Renderable;
 import net.runelite.api.Perspective;
 import net.runelite.api.Tile;
-import net.runelite.api.TileModel;
-import net.runelite.api.TilePaint;
+import net.runelite.api.SceneTileModel;
+import net.runelite.api.SceneTilePaint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.mixins.Copy;
@@ -44,8 +44,8 @@ import net.runelite.rs.api.RSNodeDeque;
 import net.runelite.rs.api.RSScene;
 import net.runelite.rs.api.RSTile;
 import net.runelite.rs.api.RSTileItem;
-import net.runelite.rs.api.RSTileItemPile;
-import net.runelite.rs.api.RSTileModel;
+import net.runelite.rs.api.RSItemLayer;
+import net.runelite.rs.api.RSSceneTileModel;
 import net.runelite.rs.api.RSWallDecoration;
 
 @Mixin(RSScene.class)
@@ -81,7 +81,7 @@ public abstract class RSSceneMixin implements RSScene
 	private static int rl$drawDistance;
 
 	@Replace("draw")
-	void rl$drawScene(int cameraX, int cameraY, int cameraZ, int cameraPitch, int cameraYaw, int plane)
+	void drawScene(int cameraX, int cameraY, int cameraZ, int cameraPitch, int cameraYaw, int plane)
 	{
 		final DrawCallbacks drawCallbacks = client.getDrawCallbacks();
 		if (drawCallbacks != null)
@@ -313,13 +313,19 @@ public abstract class RSSceneMixin implements RSScene
 								client.setViewportWalking(false);
 							}
 							client.getCallbacks().drawScene();
+
+							if (client.getDrawCallbacks() != null)
+							{
+								client.getDrawCallbacks().postDrawScene();
+							}
+
 							return;
 						}
 					}
 				}
 			}
 		}
-
+		outer:
 		for (int z = minLevel; z < maxY; ++z)
 		{
 			RSTile[][] planeTiles = tiles[z];
@@ -378,17 +384,8 @@ public abstract class RSSceneMixin implements RSScene
 
 						if (client.getTileUpdateCount() == 0)
 						{
-							if (!isGpu && (client.getOculusOrbState() != 0 && !client.getComplianceValue("orbInteraction")))
-							{
-								client.setEntitiesAtMouseCount(0);
-							}
-							client.setCheckClick(false);
-							if (!checkClick)
-							{
-								client.setViewportWalking(false);
-							}
-							client.getCallbacks().drawScene();
-							return;
+							// exit the loop early and go straight to "if (!isGpu && (client..."
+							break outer;
 						}
 					}
 				}
@@ -407,15 +404,18 @@ public abstract class RSSceneMixin implements RSScene
 			client.setViewportWalking(false);
 		}
 		client.getCallbacks().drawScene();
+		if (client.getDrawCallbacks() != null)
+		{
+			client.getDrawCallbacks().postDrawScene();
+		}
 	}
 
 	@Copy("newWallDecoration")
-	abstract public void rs$addBoundaryDecoration(int plane, int x, int y, int floor, Entity var5, Entity var6, int var7, int var8, int var9, int var10, long hash, int var12);
-
 	@Replace("newWallDecoration")
-	public void rl$addBoundaryDecoration(int plane, int x, int y, int floor, Entity var5, Entity var6, int var7, int var8, int var9, int var10, long hash, int var12)
+	@SuppressWarnings("InfiniteRecursion")
+	public void copy$addBoundaryDecoration(int plane, int x, int y, int floor, Renderable var5, Renderable var6, int var7, int var8, int var9, int var10, long hash, int var12)
 	{
-		rs$addBoundaryDecoration(plane, x, y, floor, var5, var6, var7, var8, var9, var10, hash, var12);
+		copy$addBoundaryDecoration(plane, x, y, floor, var5, var6, var7, var8, var9, var10, hash, var12);
 		Tile tile = getTiles()[plane][x][y];
 		if (tile != null)
 		{
@@ -428,16 +428,15 @@ public abstract class RSSceneMixin implements RSScene
 	}
 
 	@Copy("newGroundItemPile")
-	abstract public void rs$addItemPile(int plane, int x, int y, int hash, Entity var5, long var6, Entity var7, Entity var8);
-
 	@Replace("newGroundItemPile")
-	public void rl$addItemPile(int plane, int x, int y, int hash, Entity var5, long var6, Entity var7, Entity var8)
+	@SuppressWarnings("InfiniteRecursion")
+	public void copy$addItemPile(int plane, int x, int y, int hash, Renderable var5, long var6, Renderable var7, Renderable var8)
 	{
-		rs$addItemPile(plane, x, y, hash, var5, var6, var7, var8);
+		copy$addItemPile(plane, x, y, hash, var5, var6, var7, var8);
 		Tile tile = getTiles()[plane][x][y];
 		if (tile != null)
 		{
-			RSTileItemPile itemLayer = (RSTileItemPile) tile.getItemLayer();
+			RSItemLayer itemLayer = (RSItemLayer) tile.getItemLayer();
 			if (itemLayer != null)
 			{
 				itemLayer.setPlane(plane);
@@ -446,12 +445,11 @@ public abstract class RSSceneMixin implements RSScene
 	}
 
 	@Copy("newFloorDecoration")
-	abstract public void rs$groundObjectSpawned(int plane, int x, int y, int floor, Entity var5, long hash, int var7);
-
 	@Replace("newFloorDecoration")
-	public void rl$groundObjectSpawned(int plane, int x, int y, int floor, Entity var5, long hash, int var7)
+	@SuppressWarnings("InfiniteRecursion")
+	public void copy$groundObjectSpawned(int plane, int x, int y, int floor, Renderable var5, long hash, int var7)
 	{
-		rs$groundObjectSpawned(plane, x, y, floor, var5, hash, var7);
+		copy$groundObjectSpawned(plane, x, y, floor, var5, hash, var7);
 		Tile tile = getTiles()[plane][x][y];
 		if (tile != null)
 		{
@@ -464,12 +462,11 @@ public abstract class RSSceneMixin implements RSScene
 	}
 
 	@Copy("newBoundaryObject")
-	abstract public void rs$addBoundary(int plane, int x, int y, int floor, Entity var5, Entity var6, int var7, int var8, long hash, int var10);
-
 	@Replace("newBoundaryObject")
-	public void rl$addBoundary(int plane, int x, int y, int floor, Entity var5, Entity var6, int var7, int var8, long hash, int var10)
+	@SuppressWarnings("InfiniteRecursion")
+	public void copy$addBoundary(int plane, int x, int y, int floor, Renderable var5, Renderable var6, int var7, int var8, long hash, int var10)
 	{
-		rs$addBoundary(plane, x, y, floor, var5, var6, var7, var8, hash, var10);
+		copy$addBoundary(plane, x, y, floor, var5, var6, var7, var8, hash, var10);
 		Tile tile = getTiles()[plane][x][y];
 		if (tile != null)
 		{
@@ -482,16 +479,14 @@ public abstract class RSSceneMixin implements RSScene
 	}
 
 	@Copy("drawTileUnderlay")
-	abstract public void rs$drawTileUnderlay(TilePaint tile, int z, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y);
-
 	@Replace("drawTileUnderlay")
-	public void rl$drawTileUnderlay(TilePaint tile, int z, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y)
+	public void copy$drawTileUnderlay(SceneTilePaint tile, int z, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y)
 	{
 		if (!client.isGpu())
 		{
 			try
 			{
-				rs$drawTileUnderlay(tile, z, pitchSin, pitchCos, yawSin, yawCos, x, y);
+				copy$drawTileUnderlay(tile, z, pitchSin, pitchCos, yawSin, yawCos, x, y);
 			}
 			catch (Exception ex)
 			{
@@ -609,14 +604,12 @@ public abstract class RSSceneMixin implements RSScene
 	}
 
 	@Copy("drawTileOverlay")
-	abstract public void rs$drawTileOverlay(TileModel tile, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y);
-
 	@Replace("drawTileOverlay")
-	public void rl$drawTileOverlay(TileModel tile, int pitchSin, int pitchCos, int yawSin, int yawCos, int tileX, int tileY)
+	public void copy$drawTileOverlay(SceneTileModel tile, int pitchSin, int pitchCos, int yawSin, int yawCos, int tileX, int tileY)
 	{
 		if (!client.isGpu())
 		{
-			rs$drawTileOverlay(tile, pitchSin, pitchCos, yawSin, yawCos, tileX, tileY);
+			copy$drawTileOverlay(tile, pitchSin, pitchCos, yawSin, yawCos, tileX, tileY);
 			return;
 		}
 
@@ -646,7 +639,7 @@ public abstract class RSSceneMixin implements RSScene
 				return;
 			}
 
-			RSTileModel tileModel = (RSTileModel) tile;
+			RSSceneTileModel tileModel = (RSSceneTileModel) tile;
 
 			final int[] faceX = tileModel.getFaceX();
 			final int[] faceY = tileModel.getFaceY();
@@ -807,14 +800,14 @@ public abstract class RSSceneMixin implements RSScene
 	@MethodHook(value = "addTile", end = true)
 	@Inject
 	public void rl$addTile(int z, int x, int y, int shape, int rotation, int texture, int heightSw, int heightNw,
-					int heightNe, int heightSe, int underlaySwColor, int underlayNwColor, int underlayNeColor,
-					int underlaySeColor, int overlaySwColor, int overlayNwColor, int overlayNeColor,
-					int overlaySeColor, int underlayRgb, int overlayRgb)
+							int heightNe, int heightSe, int underlaySwColor, int underlayNwColor, int underlayNeColor,
+							int underlaySeColor, int overlaySwColor, int overlayNwColor, int overlayNeColor,
+							int overlaySeColor, int underlayRgb, int overlayRgb)
 	{
 		if (shape != 0 && shape != 1)
 		{
 			Tile tile = getTiles()[z][x][y];
-			TileModel sceneTileModel = tile.getTileModel();
+			SceneTileModel sceneTileModel = tile.getSceneTileModel();
 
 			sceneTileModel.setUnderlaySwColor(underlaySwColor);
 			sceneTileModel.setUnderlayNwColor(underlayNwColor);
@@ -829,14 +822,12 @@ public abstract class RSSceneMixin implements RSScene
 	}
 
 	@Copy("drawTileMinimap")
-	abstract void rs$drawTile(int[] pixels, int pixelOffset, int width, int z, int x, int y);
-
 	@Replace("drawTileMinimap")
-	public void rl$drawTile(int[] pixels, int pixelOffset, int width, int z, int x, int y)
+	public void copy$drawTile(int[] pixels, int pixelOffset, int width, int z, int x, int y)
 	{
 		if (!hdMinimapEnabled)
 		{
-			rs$drawTile(pixels, pixelOffset, width, z, x, y);
+			copy$drawTile(pixels, pixelOffset, width, z, x, y);
 			return;
 		}
 		Tile tile = getTiles()[z][x][y];
@@ -844,7 +835,7 @@ public abstract class RSSceneMixin implements RSScene
 		{
 			return;
 		}
-		TilePaint sceneTilePaint = tile.getTilePaint();
+		SceneTilePaint sceneTilePaint = tile.getSceneTilePaint();
 		if (sceneTilePaint != null)
 		{
 			int rgb = sceneTilePaint.getRBG();
@@ -899,7 +890,7 @@ public abstract class RSSceneMixin implements RSScene
 			return;
 		}
 
-		TileModel sceneTileModel = tile.getTileModel();
+		SceneTileModel sceneTileModel = tile.getSceneTileModel();
 		if (sceneTileModel != null)
 		{
 			int shape = sceneTileModel.getShape();
@@ -948,28 +939,28 @@ public abstract class RSSceneMixin implements RSScene
 						{
 							int lig = 0xFF - ((seLightness >> 1) * (seLightness >> 1) >> 8);
 							pixels[pixelOffset] = ((overlayRgb & 0xFF00FF) * lig & ~0xFF00FF) +
-									((overlayRgb & 0xFF00) * lig & 0xFF0000) >> 8;
+								((overlayRgb & 0xFF00) * lig & 0xFF0000) >> 8;
 						}
 						if (points[indices[shapeOffset++]] != 0)
 						{
 							int lig = 0xFF - ((seLightness * 3 + neLightness >> 3) *
-									(seLightness * 3 + neLightness >> 3) >> 8);
+								(seLightness * 3 + neLightness >> 3) >> 8);
 							pixels[pixelOffset + 1] = ((overlayRgb & 0xFF00FF) * lig & ~0xFF00FF) +
-									((overlayRgb & 0xFF00) * lig & 0xFF0000) >> 8;
+								((overlayRgb & 0xFF00) * lig & 0xFF0000) >> 8;
 						}
 						if (points[indices[shapeOffset++]] != 0)
 						{
 							int lig = 0xFF - ((seLightness + neLightness >> 2) *
-									(seLightness + neLightness >> 2) >> 8);
+								(seLightness + neLightness >> 2) >> 8);
 							pixels[pixelOffset + 2] = ((overlayRgb & 0xFF00FF) * lig & ~0xFF00FF) +
-									((overlayRgb & 0xFF00) * lig & 0xFF0000) >> 8;
+								((overlayRgb & 0xFF00) * lig & 0xFF0000) >> 8;
 						}
 						if (points[indices[shapeOffset++]] != 0)
 						{
 							int lig = 0xFF - ((seLightness + neLightness * 3 >> 3) *
-									(seLightness + neLightness * 3 >> 3) >> 8);
+								(seLightness + neLightness * 3 >> 3) >> 8);
 							pixels[pixelOffset + 3] = ((overlayRgb & 0xFF00FF) * lig & ~0xFF00FF) +
-									((overlayRgb & 0xFF00) * lig & 0xFF0000) >> 8;
+								((overlayRgb & 0xFF00) * lig & 0xFF0000) >> 8;
 						}
 					}
 					seLightness += southDeltaLightness;
@@ -1019,11 +1010,11 @@ public abstract class RSSceneMixin implements RSScene
 				{
 					pixels[pixelOffset] = points[indices[shapeOffset++]] != 0 ? overlayRgb : underlayRgb;
 					pixels[pixelOffset + 1] =
-							points[indices[shapeOffset++]] != 0 ? overlayRgb : underlayRgb;
+						points[indices[shapeOffset++]] != 0 ? overlayRgb : underlayRgb;
 					pixels[pixelOffset + 2] =
-							points[indices[shapeOffset++]] != 0 ? overlayRgb : underlayRgb;
+						points[indices[shapeOffset++]] != 0 ? overlayRgb : underlayRgb;
 					pixels[pixelOffset + 3] =
-							points[indices[shapeOffset++]] != 0 ? overlayRgb : underlayRgb;
+						points[indices[shapeOffset++]] != 0 ? overlayRgb : underlayRgb;
 					pixelOffset += width;
 				}
 			}

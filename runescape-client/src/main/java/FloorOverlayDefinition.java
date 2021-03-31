@@ -4,217 +4,208 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jt")
+@ObfuscatedName("jo")
 @Implements("FloorOverlayDefinition")
 public class FloorOverlayDefinition extends DualNode {
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lic;"
+		descriptor = "Lig;"
 	)
 	@Export("FloorOverlayDefinition_archive")
-	public static AbstractArchive FloorOverlayDefinition_archive;
-	@ObfuscatedName("o")
+	static AbstractArchive FloorOverlayDefinition_archive;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lec;"
+		descriptor = "Lex;"
 	)
 	@Export("FloorOverlayDefinition_cached")
-	public static EvictingDualNodeHashTable FloorOverlayDefinition_cached;
-	@ObfuscatedName("q")
+	static EvictingDualNodeHashTable FloorOverlayDefinition_cached;
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1755156673
+		intValue = 229154339
 	)
 	@Export("primaryRgb")
 	public int primaryRgb;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1396694897
+		intValue = 537117493
 	)
 	@Export("texture")
 	public int texture;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@Export("hideUnderlay")
 	public boolean hideUnderlay;
-	@ObfuscatedName("g")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 241976547
+		intValue = -151922243
 	)
 	@Export("secondaryRgb")
 	public int secondaryRgb;
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 752648345
+		intValue = 1474561599
 	)
 	@Export("hue")
 	public int hue;
-	@ObfuscatedName("u")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -1759175445
+		intValue = 580468697
 	)
 	@Export("saturation")
 	public int saturation;
-	@ObfuscatedName("a")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1976855017
+		intValue = 1227736915
 	)
 	@Export("lightness")
 	public int lightness;
-	@ObfuscatedName("z")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -223897525
+		intValue = -214097909
 	)
 	@Export("secondaryHue")
 	public int secondaryHue;
-	@ObfuscatedName("w")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1642260111
+		intValue = -996907009
 	)
 	@Export("secondarySaturation")
 	public int secondarySaturation;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 841175665
+		intValue = -2132940635
 	)
 	@Export("secondaryLightness")
 	public int secondaryLightness;
 
 	static {
-		FloorOverlayDefinition_cached = new EvictingDualNodeHashTable(64);
+		FloorOverlayDefinition_cached = new EvictingDualNodeHashTable(64); // L: 11
 	}
 
-	public FloorOverlayDefinition() {
-		this.primaryRgb = 0;
-		this.texture = -1;
-		this.hideUnderlay = true;
-		this.secondaryRgb = -1;
-	}
+	FloorOverlayDefinition() {
+		this.primaryRgb = 0; // L: 12
+		this.texture = -1; // L: 13
+		this.hideUnderlay = true; // L: 14
+		this.secondaryRgb = -1; // L: 15
+	} // L: 23
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "9136"
+		descriptor = "(B)V",
+		garbageValue = "1"
 	)
 	@Export("postDecode")
-	public void postDecode() {
-		if (this.secondaryRgb != -1) {
-			this.setHsl(this.secondaryRgb);
-			this.secondaryHue = this.hue;
-			this.secondarySaturation = this.saturation;
-			this.secondaryLightness = this.lightness;
+	void postDecode() {
+		if (this.secondaryRgb != -1) { // L: 41
+			this.setHsl(this.secondaryRgb); // L: 42
+			this.secondaryHue = this.hue; // L: 43
+			this.secondarySaturation = this.saturation; // L: 44
+			this.secondaryLightness = this.lightness; // L: 45
 		}
 
-		this.setHsl(this.primaryRgb);
-	}
+		this.setHsl(this.primaryRgb); // L: 47
+	} // L: 48
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkn;II)V",
-		garbageValue = "1893541080"
+		descriptor = "(Lkx;II)V",
+		garbageValue = "581864251"
 	)
 	@Export("decode")
-	public void decode(Buffer var1, int var2) {
+	void decode(Buffer var1, int var2) {
 		while (true) {
-			int var3 = var1.readUnsignedByte();
-			if (var3 == 0) {
-				return;
+			int var3 = var1.readUnsignedByte(); // L: 52
+			if (var3 == 0) { // L: 53
+				return; // L: 56
 			}
 
-			this.decodeNext(var1, var3, var2);
+			this.decodeNext(var1, var3, var2); // L: 54
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Lkn;III)V",
-		garbageValue = "965813090"
+		descriptor = "(Lkx;IIB)V",
+		garbageValue = "1"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2, int var3) {
-		if (var2 == 1) {
+		if (var2 == 1) { // L: 59
 			this.primaryRgb = var1.readMedium();
-		} else if (var2 == 2) {
+		} else if (var2 == 2) { // L: 60
 			this.texture = var1.readUnsignedByte();
-		} else if (var2 == 5) {
+		} else if (var2 == 5) { // L: 61
 			this.hideUnderlay = false;
-		} else if (var2 == 7) {
+		} else if (var2 == 7) { // L: 62
 			this.secondaryRgb = var1.readMedium();
-		} else if (var2 == 8) {
+		} else if (var2 == 8) { // L: 63
 		}
 
-	}
+	} // L: 65
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "1"
+		descriptor = "(IB)V",
+		garbageValue = "115"
 	)
 	@Export("setHsl")
 	void setHsl(int var1) {
-		double var2 = (double)(var1 >> 16 & 255) / 256.0D;
-		double var4 = (double)(var1 >> 8 & 255) / 256.0D;
-		double var6 = (double)(var1 & 255) / 256.0D;
-		double var8 = var2;
-		if (var4 < var2) {
+		double var2 = (double)(var1 >> 16 & 255) / 256.0D; // L: 68
+		double var4 = (double)(var1 >> 8 & 255) / 256.0D; // L: 69
+		double var6 = (double)(var1 & 255) / 256.0D; // L: 70
+		double var8 = var2; // L: 71
+		if (var4 < var2) { // L: 72
 			var8 = var4;
 		}
 
-		if (var6 < var8) {
+		if (var6 < var8) { // L: 73
 			var8 = var6;
 		}
 
-		double var10 = var2;
-		if (var4 > var2) {
+		double var10 = var2; // L: 74
+		if (var4 > var2) { // L: 75
 			var10 = var4;
 		}
 
-		if (var6 > var10) {
+		if (var6 > var10) { // L: 76
 			var10 = var6;
 		}
 
-		double var12 = 0.0D;
-		double var14 = 0.0D;
-		double var16 = (var8 + var10) / 2.0D;
-		if (var10 != var8) {
-			if (var16 < 0.5D) {
+		double var12 = 0.0D; // L: 77
+		double var14 = 0.0D; // L: 78
+		double var16 = (var8 + var10) / 2.0D; // L: 79
+		if (var8 != var10) { // L: 80
+			if (var16 < 0.5D) { // L: 81
 				var14 = (var10 - var8) / (var8 + var10);
 			}
 
-			if (var16 >= 0.5D) {
+			if (var16 >= 0.5D) { // L: 82
 				var14 = (var10 - var8) / (2.0D - var10 - var8);
 			}
 
-			if (var10 == var2) {
+			if (var2 == var10) { // L: 83
 				var12 = (var4 - var6) / (var10 - var8);
-			} else if (var10 == var4) {
-				var12 = 2.0D + (var6 - var2) / (var10 - var8);
-			} else if (var10 == var6) {
-				var12 = 4.0D + (var2 - var4) / (var10 - var8);
+			} else if (var10 == var4) { // L: 84
+				var12 = (var6 - var2) / (var10 - var8) + 2.0D;
+			} else if (var6 == var10) {
+				var12 = (var2 - var4) / (var10 - var8) + 4.0D; // L: 85
 			}
 		}
 
-		var12 /= 6.0D;
-		this.hue = (int)(256.0D * var12);
-		this.saturation = (int)(256.0D * var14);
-		this.lightness = (int)(var16 * 256.0D);
-		if (this.saturation < 0) {
+		var12 /= 6.0D; // L: 87
+		this.hue = (int)(256.0D * var12); // L: 88
+		this.saturation = (int)(256.0D * var14); // L: 89
+		this.lightness = (int)(256.0D * var16); // L: 90
+		if (this.saturation < 0) { // L: 91
 			this.saturation = 0;
-		} else if (this.saturation > 255) {
+		} else if (this.saturation > 255) { // L: 92
 			this.saturation = 255;
 		}
 
-		if (this.lightness < 0) {
+		if (this.lightness < 0) { // L: 93
 			this.lightness = 0;
-		} else if (this.lightness > 255) {
+		} else if (this.lightness > 255) { // L: 94
 			this.lightness = 255;
 		}
 
-	}
-
-	@ObfuscatedName("bk")
-	@ObfuscatedSignature(
-		signature = "([BII)I",
-		garbageValue = "-2091622873"
-	)
-	public static int method4936(byte[] var0, int var1) {
-		return Actor.method1822(var0, 0, var1);
-	}
+	} // L: 95
 }

@@ -1,15 +1,31 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ll")
+@ObfuscatedName("lz")
 public class class336 {
-	@ObfuscatedName("w")
-	@Export("musicTrackBoolean")
-	public static boolean musicTrackBoolean;
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		signature = "Llh;"
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = 1826963065
 	)
-	static IndexedSprite field3912;
+	@Export("SpriteBuffer_spriteCount")
+	static int SpriteBuffer_spriteCount;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = 341867827
+	)
+	@Export("SpriteBuffer_spriteWidth")
+	static int SpriteBuffer_spriteWidth;
+	@ObfuscatedName("d")
+	@ObfuscatedGetter(
+		intValue = 1978795799
+	)
+	@Export("SpriteBuffer_spriteHeight")
+	static int SpriteBuffer_spriteHeight;
+	@ObfuscatedName("y")
+	@Export("SpriteBuffer_yOffsets")
+	public static int[] SpriteBuffer_yOffsets;
+	@ObfuscatedName("h")
+	@Export("SpriteBuffer_spriteWidths")
+	public static int[] SpriteBuffer_spriteWidths;
 }
